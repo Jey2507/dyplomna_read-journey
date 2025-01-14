@@ -1,0 +1,23 @@
+.mainText {
+    margin: 40px 0px 20px;
+    font-family: var(--font-family);
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 1;
+    letter-spacing: 0.02em;
+    width: 295px;
+    color: var(--white)
+}
+
+.spanText {
+    color: #e3e3e380;
+}
+
+.box {
+    border-radius: 30px;
+    width: 335px;
+    height: 411px;
+    background: var(--grey);
+    padding: 20px 20px 40px 20px;
+    margin-top: 20px;
+}

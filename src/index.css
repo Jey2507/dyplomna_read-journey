@@ -1,0 +1,48 @@
+:root {
+  --white: #F9F9F9;
+  --ligth_grey: #686868;
+  --mediun_grey: #e3e3e34d; 
+  --mediun_dark_grey: #262626;
+  --grey: #1F1F1F;
+  --black: #141414;
+  --blue: #4F92F7;
+  --ligth_green: #30B94D;
+
+  --font-family: "Poppins", sans-serif;
+  --second-family: "Inter", sans-serif;
+
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--black);
+  margin: 0 auto;     
+}
+
+h1,h2,h3,h4,h5,h6,p {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+img {
+  width: 100%;
+  display: block;
+}
+
+button {
+  cursor: pointer;
+}
+
+
+
+

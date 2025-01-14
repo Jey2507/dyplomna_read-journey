@@ -1,0 +1,15 @@
+.box {
+    margin-top: 10px;
+    border-radius: 30px;
+    width: 335px;
+    height: 351px;
+    background: var(--grey);
+    display: flex;
+    justify-content: center;
+    align-items: end;
+}
+
+.image {
+    width: 255px;
+    height: 331px;
+}
