@@ -24,6 +24,22 @@
     justify-content: center;
     align-items: center;
     color: var(--white);
-    background-color: #e3e3e380;
+    background-color: rgba(227, 227, 227, 0.22);
     border-radius: 16px;
 }
+
+@keyframes moveArrow {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(10px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
+.icon {
+    animation: moveArrow 2s ease-in-out infinite; 
+  }
