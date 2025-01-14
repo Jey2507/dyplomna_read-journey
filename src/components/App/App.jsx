@@ -4,7 +4,7 @@ import { lazy } from 'react'
 const HomePage = lazy(() => import('../../pages/HomePage/HomePage.jsx'));
 const LoginPage = lazy(() => import('../../pages/LoginPage/LoginPage.jsx'));
 const RegisterPage = lazy(() => import('../../pages/RegisterPage/RegisterPage.jsx'));
-const NotfoundPage = lazy(() => import('../../pages/NotFoundPage/NotfoundPage.jsx'));
+const NotfoundPage = lazy(() => import('../../pages/NotFoundPage/NotFoundPage.jsx'));
 
 function App() {
 
