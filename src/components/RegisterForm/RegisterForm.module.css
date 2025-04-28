@@ -1,0 +1,106 @@
+.inputGroup {
+    border-radius: 12px;
+    width: 100%;
+    height: 44px;
+
+    background: #262626;
+    border: none;
+    margin-bottom: 8px;
+    position: relative;
+}
+
+.boxFlex {
+    display: flex;
+}
+
+.input {
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 133%;
+    letter-spacing: -0.02em;
+    color: #f9f9f9;
+    border: none;
+    background: #262626;
+    padding-left: 10px;
+    height: 44px;
+    width: 100%;
+    border-radius: 12px;
+}
+
+.input:focus {
+    border: none;
+    outline: none;
+}
+
+.inputLabel {
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 133%;
+    letter-spacing: -0.02em;
+    text-align: center;
+    color: #686868;
+    margin: 14px 0px 14px 14px;
+}
+
+.input::placeholder {
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 133%;
+    letter-spacing: -0.02em;
+    color: #f9f9f9;
+}
+
+.boxLogin {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 14px;
+}
+
+.submitButton {
+    border-radius: 30px;
+    width: 131px;
+    height: 42px;
+
+    background: #f9f9f9;
+
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 129%;
+    letter-spacing: 0.02em;
+    color: #1f1f1f;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: none;
+}
+
+.signInLink {
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 117%;
+    letter-spacing: -0.02em;
+    text-decoration: underline;
+    text-decoration-skip-ink: none;
+    text-align: center;
+    color: #686868;
+}
+
+.errorText {
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 129%;
+    letter-spacing: 0.02em;
+    color: red;
+    position: absolute;
+    top: -6px;
+    left: 14px;
+}

@@ -45,48 +45,54 @@ export default function RegisterForm() {
 
   return (
     <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
-      <h2 className={css.formTitle}>Register</h2>
       <div className={css.inputGroup}>
-        <label className={css.inputLabel}>Name</label>
-        <input
-          type="text"
-          placeholder="Enter your name"
-          {...register('name')}
-          className={`${css.input} ${errors.name ? css.errorInput : ''}`}
-        />
+        <div className={css.boxFlex}>        
+          <label className={css.inputLabel}>Name</label>
+          <input
+            type="text"
+            placeholder="Enter your name"
+            {...register('name')}
+            className={`${css.input} ${errors.name ? css.errorInput : ''}`}
+          />
+        </div>
         {errors.name && <p className={css.errorText}>{errors.name.message}</p>}
       </div>
       <div className={css.inputGroup}>
-        <label className={css.inputLabel}>Email</label>
-        <input
-          type="email"
-          placeholder="Enter your email"
-          {...register('email')}
-          className={`${css.input} ${errors.email ? css.errorInput : ''}`}
-        />
+        <div className={css.boxFlex}> 
+          <label className={css.inputLabel}>Email</label>
+          <input
+            type="email"
+            placeholder="Enter your email"
+            {...register('email')}
+            className={`${css.input} ${errors.email ? css.errorInput : ''}`}
+          />
+        </div>
         {errors.email && <p className={css.errorText}>{errors.email.message}</p>}
       </div>
       <div className={css.inputGroup}>
-        <label className={css.inputLabel}>Password</label>
-        <div className={css.inputWrapper}>
-          <input
-          onClick={togglePasswordVisibility}
-            type={showPassword ? 'text' : 'password'}
-            placeholder="Enter your password"
-            {...register('password')}
-            className={`${css.input} ${errors.password ? css.errorInput : ''}`}
-          />     
+        <div className={css.boxFlex}> 
+          <label className={css.inputLabel}>Password</label>
+          <div className={css.inputWrapper}>
+            <input
+            onClick={togglePasswordVisibility}
+              type={showPassword ? 'text' : 'password'}
+              placeholder="Enter your password"
+              {...register('password')}
+              className={`${css.input} ${errors.password ? css.errorInput : ''}`}
+            />     
+          </div>
         </div>
         {errors.password && <p className={css.errorText}>{errors.password.message}</p>}
       </div>
-      <button disabled={!isDirty || !isValid} className={css.submitButton} type="submit">
-        Register
-      </button>
-      <div className={css.signInPrompt}>
-        <p>Already have an account? </p>
-        <Link className={css.signInLink} to="/login">
-          Login
-        </Link>
+
+      <div className={css.boxLogin}>
+        <button disabled={!isDirty || !isValid} className={css.submitButton} type="submit">
+          Register
+        </button>
+
+          <Link className={css.signInLink} to="/login">
+          Already have an account?
+          </Link>
       </div>
     </form>
   );

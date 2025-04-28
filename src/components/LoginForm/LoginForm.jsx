@@ -45,36 +45,41 @@ export default function LoginForm() {
   return (
     <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
       <div className={css.inputGroup}>
-        <label className={css.inputLabel}>Mail:</label>
-        <input
-          type="email"
-          placeholder="Your@email.com"
-          {...register('email')}
-          className={`${css.input} ${errors.email ? css.errorInput : ''}`}
-        />
+        <div className={css.boxFlex}>
+          <label className={css.inputLabel}>Mail:</label>
+          <input
+            type="email"
+            placeholder="Your@email.com"
+            {...register('email')}
+            className={`${css.input} ${errors.email ? css.errorInput : ''}`}
+          />
+        </div>
         {errors.email && <p className={css.errorText}>{errors.email.message}</p>}
       </div>
       <div className={css.inputGroup}>
-        <label className={css.inputLabel}>Password:</label>
-        <div className={css.inputWrapper}>
-          <input
-          onClick={togglePasswordVisibility}
-            type={showPassword ? 'text' : 'password'}
-            placeholder="Enter your password"
-            {...register('password')}
-            className={`${css.input} ${errors.password ? css.errorInput : ''}`}
-          />
+        <div className={css.boxFlex}>
+          <label className={css.inputLabel}>Password:</label>
+          <div className={css.inputWrapper}>
+            <input
+            onClick={togglePasswordVisibility}
+              type={showPassword ? 'text' : 'password'}
+              placeholder="Enter your password"
+              {...register('password')}
+              className={`${css.input} ${errors.password ? css.errorInput : ''}`}
+            />
 
+          </div>
         </div>
         {errors.password && <p className={css.errorText}>{errors.password.message}</p>}
       </div>
-      <button disabled={!isDirty || !isValid} className={css.submitButton} type="submit">
-        Log In
-      </button>
-      <div className={css.signInPrompt}>
-        <p>Already have an account? </p>
+
+      <div className={css.boxLogin}>
+        <button disabled={!isDirty || !isValid} className={css.submitButton} type="submit">
+          Log In
+        </button>
+
         <Link className={css.signInLink} to="/register">
-          Register
+        Already have an account?
         </Link>
       </div>
     </form>
