@@ -4,6 +4,9 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { Link } from 'react-router-dom';
 import css from './LoginForm.module.css';
+import { useDispatch } from 'react-redux';
+import { login as loginUser } from '../../redux/auth/operation.js';
+import toast from 'react-hot-toast';
 
 const schema = yup.object().shape({
   email: yup.string().email('Invalid email address').required('Email is required'),
@@ -11,6 +14,8 @@ const schema = yup.object().shape({
 });
 
 export default function LoginForm() {
+  const { reset } = useForm();
+  const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
@@ -27,20 +32,21 @@ export default function LoginForm() {
   });
 
   const onSubmit = async (data) => {
+    const { email, password } = data;
+    
     try {
-      const response = await fetch('https://example.com/api/signup', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
-      const result = await response.json();
-      console.log('Signup successful:', result);
+      console.log("Logging in with:", email, password);
+      const res = await dispatch(loginUser({ email, password })).unwrap();
+      console.log("Login success:", res); // Тут більше немає .data
+  
+      reset();  
+      toast.success("Welcome to ReadJourney!");
     } catch (error) {
-      console.error('Signup failed:', error);
+      console.error("Login error:", error);
+      toast.error("Login failed. Please try again.");
     }
   };
+  
 
   return (
     <form className={css.form} onSubmit={handleSubmit(onSubmit)}>

@@ -4,6 +4,9 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { Link } from 'react-router-dom';
 import css from './RegisterForm.module.css';
+import { useDispatch } from 'react-redux';
+import { register as registerUser } from '../../redux/auth/operation.js';
+import toast from 'react-hot-toast';
 
 const schema = yup.object().shape({
   name: yup.string().min(2, 'Name must be at least 2 characters').required('Name is required'),
@@ -12,6 +15,8 @@ const schema = yup.object().shape({
 });
 
 export default function RegisterForm() {
+  const { reset } = useForm();
+  const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
@@ -28,20 +33,17 @@ export default function RegisterForm() {
   });
 
   const onSubmit = async (data) => {
+    const { name, email, password } = data;
+  
     try {
-      const response = await fetch('https://example.com/api/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
-      const result = await response.json();
-      console.log('Registration successful:', result);
+      await dispatch(registerUser({name, email, password })).unwrap();
+      reset();  // очистка форми після успішної реєстрації
+      toast.success("Welcome to ReadJourney!");
     } catch (error) {
-      console.error('Registration failed:', error);
+      toast.error("Registration failed. Please try again.");
     }
   };
+  
 
   return (
     <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
