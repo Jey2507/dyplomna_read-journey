@@ -30,10 +30,9 @@ export const login = createAsyncThunk(
   async (userInfo, thunkAPI) => {
     try {
       const res = await axios.post("/users/signin", userInfo);
-      const { name, token } = res.data;
+      const { name, token, refreshToken} = res.data;
       setAuthHeader(token);
-      console.log(res)
-      return { name, token };
+      return { name, token, refreshToken };
     } catch (error) {
       toast.error(error.response.data.message);
       return thunkAPI.rejectWithValue(error.message);
@@ -52,23 +51,26 @@ export const logout = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
 });
 
 export const refreshUser = createAsyncThunk(
-  "/users/current/refresh",
+  "users/refresh",
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
-    if (persistedToken === null) {
-      return thunkAPI.rejectWithValue("Unable to fetch user");
+
+    if (!persistedToken) {
+      return thunkAPI.rejectWithValue("No token found");
     }
+
     try {
-      setAuthHeader(persistedToken);
-      const res = await axios.get("/users/current/refresh");
-      // setAuthHeader(persistedToken);
-      return res.data.data.token;
+      setAuthHeader(persistedToken); 
+      const res = await axios.get("/users/current"); 
+      const { name, token, refreshToken} = res.data;
+      return { name, token, refreshToken };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
+
 
 export const updateUser = createAsyncThunk(
   "auth/update-User",
@@ -96,7 +98,7 @@ export const setupAxiosInterceptors = (store) => {
       if (error.response.status === 401 && !originalRequest._retry) {
         originalRequest._retry = true;
         try {
-          const { data } = await axios.post("users/current/refresh");
+          const { data } = await axios.post("users/current");
           setAuthHeader(data.data.token);
           originalRequest.headers.Authorization = `Bearer ${data.data.token}`;
           store.dispatch(setUpdatedToken(data.accessToken));
