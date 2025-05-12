@@ -1,0 +1,81 @@
+.divRead {
+    border-radius: 12px;
+    width: 295px;
+    height: max-content;
+    padding: 20px;
+
+    background: #262626;
+}
+
+.divRead h2 {
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 100%;
+    letter-spacing: -0.02em;
+    text-align: center;
+    color: #f9f9f9;
+    width: max-content;
+    margin-bottom: 20px;
+}
+
+.divRead ul {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.descr {
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 129%;
+    letter-spacing: -0.02em;
+    color: #686868;
+    width: 203px;
+}
+
+.spanColor {
+    color: #f9f9f9;
+}
+
+.divFlex {
+    display: flex;
+    gap: 12px;   
+}
+
+.divCircle {
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 100%;
+    letter-spacing: -0.02em;
+    text-align: center;
+    color: #1f1f1f;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.boxLink {
+    display: flex;
+    justify-content: space-between;
+}
+
+.boxLink h3 {
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 129%;
+    letter-spacing: -0.02em;
+    text-decoration: underline;
+    text-decoration-skip-ink: none;
+    color: #686868; 
+}
