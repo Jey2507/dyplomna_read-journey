@@ -1,3 +1,4 @@
+import { Toaster } from "react-hot-toast";
 import Container from "../../components/Container/Container.jsx";
 import Header from "../../components/Header/Header.jsx";
 import ReadComponent from "../../components/ReadComponent/ReadComponent.jsx";
@@ -10,6 +11,7 @@ export default function ReadJourney() {
             <Header />
             <ReadComponent />
             <Recommended />
+            <Toaster position="top-right"/>
         </Container>
         </>
     )

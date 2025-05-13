@@ -37,7 +37,7 @@ export default function LoginForm() {
     try {
       console.log("Logging in with:", email, password);
       const res = await dispatch(loginUser({ email, password })).unwrap();
-      console.log("Login success:", res); // Тут більше немає .data
+      console.log("Login success:", res); 
   
       reset();  
       toast.success("Welcome to ReadJourney!");

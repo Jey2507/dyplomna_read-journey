@@ -30,7 +30,7 @@ export default function Recommended() {
           modules={[Navigation]}
           slidesPerView={3}
           spaceBetween={21}
-          width={611}
+          width={453}
           onBeforeInit={(swiper) => {
             swiper.params.navigation.prevEl = prevRef.current;
             swiper.params.navigation.nextEl = nextRef.current;
