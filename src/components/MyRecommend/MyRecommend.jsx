@@ -8,9 +8,10 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 
-import css from "./Recommended.module.css";
+import css from "../../components/MyRecommend/MyRecommend.module.css";
+import { NavLink } from "react-router-dom";
 
-export default function Recommended() {
+export default function MyRecommend() {
   const dispatch = useDispatch();
   const recommendedBooks = useSelector(selectBooks);
 
@@ -23,14 +24,14 @@ export default function Recommended() {
 
   return (
     <div className={css.container}>
-      <h2 className={css.title}>Recommended</h2>
+      <h2 className={css.title}>Recommended books</h2>
 
       <div className={css.swiperWrapper}>
         <Swiper
           modules={[Navigation]}
-          slidesPerView={2}
-          spaceBetween={21}
-          width={280}
+          slidesPerView={3}
+          spaceBetween={20}
+          width={253}
           onBeforeInit={(swiper) => {
             swiper.params.navigation.prevEl = prevRef.current;
             swiper.params.navigation.nextEl = nextRef.current;
@@ -57,15 +58,11 @@ export default function Recommended() {
           ))}
         </Swiper>
 
-        <div className={css.buttons}>
-          <div className={css.button} ref={prevRef}>
-            ←
-          </div>
-          <div className={css.button} ref={nextRef}>
-            →
-          </div>
-        </div>
       </div>
+      <NavLink className={css.boxLink} to='/readjourney'>
+            <h3>Home</h3>
+            <h3>→</h3>
+        </NavLink>
     </div>
   );
 }

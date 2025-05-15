@@ -1,14 +1,11 @@
-import Filter from "../Filter/Filter"
 import css from "../ReadComponent/ReadComponent.module.css"
-import StartRead from "../StartRead/StartRead"
 
-export default function ReadComponent() {
+export default function ReadComponent({children}) {
 
     return (
         <>
         <div className={css.main}>
-            <Filter  />
-            <StartRead />
+            {children}
         </div>
         </>
     )

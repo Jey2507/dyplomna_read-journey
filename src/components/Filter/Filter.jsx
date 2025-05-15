@@ -16,7 +16,7 @@ export default function Filter({ onFilter }) {
       <form className={css.form} onSubmit={handleSubmit}>
         <div className={css.inputGroup}>
             <div className={css.boxFlex}>
-                <label className={css.inputLabel}>Book Title:</label>
+                <label className={css.inputLabel}>Book title:</label>
                 <input
                     type="text"
                     value={title}

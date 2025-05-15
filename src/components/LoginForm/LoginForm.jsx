@@ -46,8 +46,8 @@ export default function LoginForm() {
       toast.error("Login failed. Please try again.");
     }
   };
-  
 
+  
   return (
     <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
       <div className={css.inputGroup}>

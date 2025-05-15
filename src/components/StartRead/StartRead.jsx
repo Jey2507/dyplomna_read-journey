@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom"
 import css from "../StartRead/StartRead.module.css"
 
 export default function StartRead() {
@@ -19,10 +20,10 @@ export default function StartRead() {
                     </div>
                 </li>
             </ul>
-            <div className={css.boxLink}>
+            <NavLink className={css.boxLink} to='/mylibrary'>
                 <h3>My library</h3>
-                <h3>arrow</h3>
-            </div>
+                <h3>→</h3>
+            </NavLink>
         </div>
     )
 }

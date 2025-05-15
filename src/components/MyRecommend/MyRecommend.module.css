@@ -1,0 +1,81 @@
+.image {
+    border-radius: 8px;
+    width: 100%;
+    max-width: 71px;
+    height: 107px;
+    margin-bottom: 8px;
+  }
+  
+  .title {
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: #f9f9f9;
+    margin-bottom: 14px;
+  }
+  
+  .container {
+    padding: 20px;
+
+    border-radius: 12px;
+    width: 295px;
+    background: #262626;
+  }
+  
+  .list {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+  }
+  
+  .titleBook {
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 10px;
+    line-height: 120%;
+    letter-spacing: -0.02em;
+    color: #f9f9f9;
+    width: 71px;
+    margin-bottom: 2px;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;      /* Обмежити до 2 рядків */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .descr {
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 120%;
+    letter-spacing: -0.02em;
+    color: #686868;
+  }
+  
+  .item {
+    width: 71px;
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+  }
+  
+.boxLink {
+    display: flex;
+    justify-content: space-between;
+}
+
+.boxLink h3 {
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 129%;
+    letter-spacing: -0.02em;
+    text-decoration: underline;
+    text-decoration-skip-ink: none;
+    color: #686868; 
+}
