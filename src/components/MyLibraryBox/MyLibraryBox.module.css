@@ -1,4 +1,5 @@
-.contrainer {
+.container {
+    position: relative;
     border-radius: 30px;
     width: 335px;
     height: 407px;
@@ -43,7 +44,6 @@
     gap: 10px;
     justify-content: center;
     align-items: center;
-
 }
 
 .mainBox {
@@ -61,4 +61,77 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.dropdownWrapper {
+    position: absolute;
+    margin-top: 20px;
+    width: 120px;
+    top: 20px;
+    right: 20px;
+}
+
+.dropdownButton {
+    width: 100%;
+    background-color: transparent;
+    border: 1px solid #3e3e3e;
+    padding: 12px 14px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 133%;
+    letter-spacing: -0.02em;
+    text-align: center;
+    color: #f9f9f9;
+}
+
+.arrow {
+    font-size: 12px;
+    transition: transform 0.3s ease;
+}
+
+.arrowOpen {
+    transform: rotate(90deg);
+}
+
+.dropdownList {
+    list-style: none;
+    margin: 4px 0 0 0;
+    border-radius: 12px;
+    width: 120px;
+    position: absolute;
+    width: 100%;
+    z-index: 2;
+    padding: 14px;
+    background: #262626;
+
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.dropdownListActive {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.dropdownItemDisabled {
+    color: #5a5a5a;
+    font-family: var(--font-family);
+    font-size: 14px;
+    cursor: default;
+    margin-bottom: 7px;
+}
+
+.dropdownItemActive {
+    color: #f9f9f9;
+    font-family: var(--font-family);
+    font-size: 14px;
 }

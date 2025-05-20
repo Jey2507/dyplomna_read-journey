@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { recommend } from "../../redux/books/operations";
 import { selectBooks } from "../../redux/books/selectors";
@@ -9,6 +9,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 
 import css from "./Recommended.module.css";
+import AddBookModal from "../AddBookModal/AddBookModal";
 
 export default function Recommended() {
   const dispatch = useDispatch();
@@ -17,9 +18,19 @@ export default function Recommended() {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
 
+  const [selectedBook, setSelectedBook] = useState(null);
+
   useEffect(() => {
     dispatch(recommend());
   }, [dispatch]);
+
+  const handleCardClick = (book) => {
+    setSelectedBook(book);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedBook(null);
+  };
 
   return (
     <div className={css.container}>
@@ -48,7 +59,12 @@ export default function Recommended() {
         >
           {recommendedBooks?.map((book) => (
             <SwiperSlide key={book._id}>
-              <div className={css.item}>
+              <div
+                className={css.item}
+                onClick={() => handleCardClick(book)}
+                role="button"
+                tabIndex={0}
+              >
                 <img className={css.image} src={book.imageUrl} alt={book.title} />
                 <h3 className={css.titleBook}>{book.title}</h3>
                 <p className={css.descr}>{book.author}</p>
@@ -58,14 +74,21 @@ export default function Recommended() {
         </Swiper>
 
         <div className={css.buttons}>
-          <div className={css.button} ref={prevRef}>
-            ←
-          </div>
-          <div className={css.button} ref={nextRef}>
-            →
-          </div>
+          <div className={css.button} ref={prevRef}>←</div>
+          <div className={css.button} ref={nextRef}>→</div>
         </div>
       </div>
+
+      {selectedBook && (
+        <AddBookModal
+          id={selectedBook._id}
+          title={selectedBook.title}
+          author={selectedBook.author}
+          pages={selectedBook.totalPages}
+          image={selectedBook.imageUrl}
+          onClose={handleCloseModal}
+        />
+      )}
     </div>
   );
 }

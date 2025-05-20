@@ -13,3 +13,29 @@ export const recommend = createAsyncThunk(
         }
     }
 );
+
+export const addBook = createAsyncThunk(
+  "books/add/{id}",
+  async ({_id, ...bookData}, thunkAPI) => {
+    try {
+      const response = await axios.post(`/books/add/${_id}`, bookData);
+      return response.data; 
+      
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const myBooks = createAsyncThunk(
+    "books/own",
+    async (_, thunkAPI) => {
+        try {
+            const response = await axios.get("/books/own");
+            console.log(response.data,"ogoo")
+            return response.data;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.message);
+        }
+    }
+);

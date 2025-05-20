@@ -1,15 +1,14 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { recommend } from "../../redux/books/operations";
 import { selectBooks } from "../../redux/books/selectors";
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
-
 import css from "../../components/MyRecommend/MyRecommend.module.css";
 import { NavLink } from "react-router-dom";
+import AddBookModal from "../AddBookModal/AddBookModal"; // імпортуємо модалку
 
 export default function MyRecommend() {
   const dispatch = useDispatch();
@@ -17,6 +16,8 @@ export default function MyRecommend() {
 
   const prevRef = useRef(null);
   const nextRef = useRef(null);
+
+  const [selectedBook, setSelectedBook] = useState(null); // стан для вибраної книги
 
   useEffect(() => {
     dispatch(recommend());
@@ -49,7 +50,18 @@ export default function MyRecommend() {
         >
           {recommendedBooks?.map((book) => (
             <SwiperSlide key={book._id}>
-              <div className={css.item}>
+              <div
+                className={css.item}
+                onClick={() =>
+                  setSelectedBook({
+                    id: book._id,
+                    title: book.title,
+                    author: book.author,
+                    pages: book.totalPages,
+                    image: book.imageUrl,
+                  })
+                }
+              >
                 <img className={css.image} src={book.imageUrl} alt={book.title} />
                 <h3 className={css.titleBook}>{book.title}</h3>
                 <p className={css.descr}>{book.author}</p>
@@ -57,12 +69,23 @@ export default function MyRecommend() {
             </SwiperSlide>
           ))}
         </Swiper>
-
       </div>
-      <NavLink className={css.boxLink} to='/readjourney'>
-            <h3>Home</h3>
-            <h3>→</h3>
-        </NavLink>
+
+      <NavLink className={css.boxLink} to="/readjourney">
+        <h3>Home</h3>
+        <h3>→</h3>
+      </NavLink>
+
+      {selectedBook && (
+        <AddBookModal
+          id={selectedBook.id}
+          title={selectedBook.title}
+          author={selectedBook.author}
+          pages={selectedBook.pages}
+          image={selectedBook.image}
+          onClose={() => setSelectedBook(null)} // додай можливість закрити
+        />
+      )}
     </div>
   );
 }
