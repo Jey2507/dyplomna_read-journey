@@ -9,7 +9,7 @@ import css from "../../components/MyRecommend/MyRecommend.module.css";
 import { NavLink } from "react-router-dom";
 import AddBookModal from "../AddBookModal/AddBookModal";
 
-export default function MyRecommend() {
+export default function MyRecommend({buble}) {
   const dispatch = useDispatch();
   const [recommendedBooks, setRecommendedBooks] = useState([]);
   const [selectedBook, setSelectedBook] = useState(null);
@@ -91,6 +91,7 @@ export default function MyRecommend() {
           pages={selectedBook.pages}
           image={selectedBook.image}
           onClose={() => setSelectedBook(null)}
+          setter={buble}
         />
       )}
     </div>

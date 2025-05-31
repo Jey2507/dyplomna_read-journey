@@ -10,7 +10,7 @@ import "swiper/css/navigation";
 import css from "./Recommended.module.css";
 import AddBookModal from "../AddBookModal/AddBookModal";
 
-export default function Recommended() {
+export default function Recommended({buble}) {
   const dispatch = useDispatch();
   const [recommendedBooks, setRecommendedBooks] = useState([]);
   const [selectedBook, setSelectedBook] = useState(null);
@@ -94,6 +94,7 @@ export default function Recommended() {
           pages={selectedBook.totalPages}
           image={selectedBook.imageUrl}
           onClose={handleCloseModal}
+          setter={buble}
         />
       )}
     </div>
