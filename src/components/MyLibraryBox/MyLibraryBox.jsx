@@ -21,7 +21,7 @@ export default function MyLibraryBox() {
 
   useEffect(() => {
     dispatch(myBooks());
-  }, [dispatch]);
+  }, [dispatch, library]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {

@@ -7,6 +7,7 @@ import { selectIsRefreshing } from '../../redux/auth/selectors.js';
 import { refreshUser } from '../../redux/auth/operation.js';
 import Loader from '../Loader/Loader.jsx';
 import MyLibrary from '../../pages/MyLibrary/MyLibrary.jsx';
+import MyReading from '../../pages/MyReading/MyReading.jsx';
 
 const ReadJourney = lazy(() => import('../../pages/ReadJourney/ReadJourney.jsx'));
 const HomePage = lazy(() => import('../../pages/HomePage/HomePage.jsx'));
@@ -32,6 +33,7 @@ function App() {
         <Route path="/login" element={<RestrictedRoute redirectTo="/readjourney" component={<LoginPage />} />} />
         <Route path="/readjourney" element={<PrivateRoute redirectTo="/login" component={<ReadJourney />} />} />
         <Route path="/mylibrary" element={<PrivateRoute redirectTo="/login" component={<MyLibrary />} />} />
+        <Route path="/myreading" element={<PrivateRoute redirectTo="/login" component={<MyReading />} />} />
         <Route path="*" element={<NotfoundPage />} />
       </Routes>
     </Suspense>
