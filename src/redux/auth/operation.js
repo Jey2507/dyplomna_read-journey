@@ -16,8 +16,9 @@ export const register = createAsyncThunk(
   async (newUser, thunkAPI) => {
     try {
       const response = await axios.post("/users/signup", newUser);
-      const { user, token } = response.data.data;
+      const { user, token } = response.data;
       setAuthHeader(token);
+      localStorage.setItem("token", token);
       return { user, token };
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -32,6 +33,7 @@ export const login = createAsyncThunk(
       const res = await axios.post("/users/signin", userInfo);
       const { name, token, refreshToken} = res.data;
       setAuthHeader(token);
+      localStorage.setItem("token", token);
       return { name, token, refreshToken };
     } catch (error) {
       toast.error(error.response.data.message);
@@ -41,7 +43,7 @@ export const login = createAsyncThunk(
 );
 
 
-export const logout = createAsyncThunk("users/signout", async (_, thunkAPI) => {
+export const logout = createAsyncThunk("/users/signout", async (_, thunkAPI) => {
   try {
     await axios.post("/users/signout");
     clearAuthHeader();
@@ -98,7 +100,7 @@ export const setupAxiosInterceptors = (store) => {
       if (error.response.status === 401 && !originalRequest._retry) {
         originalRequest._retry = true;
         try {
-          const { data } = await axios.post("users/current");
+          const { data } = await axios.get("/users/current");
           setAuthHeader(data.data.token);
           originalRequest.headers.Authorization = `Bearer ${data.data.token}`;
           store.dispatch(setUpdatedToken(data.accessToken));

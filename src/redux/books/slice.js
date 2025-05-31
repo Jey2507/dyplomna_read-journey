@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { recommend, addBook } from '../books/operations.js';
+import { recommend, addBook, deleteMybook, myBooks } from '../books/operations.js';
 
 const initialState = {
-  items: [],          
+  items: [],
   isLoading: false,
   error: null,
 };
@@ -18,27 +18,41 @@ const booksSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(recommend.pending, (state) => {
-        state.isLoading = true;
-        state.error = null;
-      })
-      .addCase(recommend.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.items = action.payload;
-      })
-      .addCase(recommend.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload;
-      })
       .addCase(addBook.pending, (state) => {
         state.isLoading = true;
         state.error = null;
       })
       .addCase(addBook.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.items.push(action.payload); 
+        state.items.push(action.payload);
       })
       .addCase(addBook.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+
+      .addCase(deleteMybook.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(deleteMybook.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.items = state.items.filter(book => book._id !== action.payload); 
+      })
+      .addCase(deleteMybook.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+
+      .addCase(myBooks.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(myBooks.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.items = action.payload;
+      })
+      .addCase(myBooks.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       });

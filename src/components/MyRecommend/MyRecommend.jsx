@@ -1,26 +1,33 @@
 import { useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { recommend } from "../../redux/books/operations";
-import { selectBooks } from "../../redux/books/selectors";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import css from "../../components/MyRecommend/MyRecommend.module.css";
 import { NavLink } from "react-router-dom";
-import AddBookModal from "../AddBookModal/AddBookModal"; // імпортуємо модалку
+import AddBookModal from "../AddBookModal/AddBookModal";
 
 export default function MyRecommend() {
   const dispatch = useDispatch();
-  const recommendedBooks = useSelector(selectBooks);
+  const [recommendedBooks, setRecommendedBooks] = useState([]);
+  const [selectedBook, setSelectedBook] = useState(null);
 
   const prevRef = useRef(null);
   const nextRef = useRef(null);
 
-  const [selectedBook, setSelectedBook] = useState(null); // стан для вибраної книги
-
   useEffect(() => {
-    dispatch(recommend());
+    const fetchRecommended = async () => {
+      try {
+        const result = await dispatch(recommend()).unwrap();
+        setRecommendedBooks(result);
+      } catch (error) {
+        console.error("Failed to fetch recommended books:", error);
+      }
+    };
+
+    fetchRecommended();
   }, [dispatch]);
 
   return (
@@ -48,7 +55,7 @@ export default function MyRecommend() {
           }}
           className={css.swiper}
         >
-          {recommendedBooks?.map((book) => (
+          {recommendedBooks.map((book) => (
             <SwiperSlide key={book._id}>
               <div
                 className={css.item}
@@ -83,7 +90,7 @@ export default function MyRecommend() {
           author={selectedBook.author}
           pages={selectedBook.pages}
           image={selectedBook.image}
-          onClose={() => setSelectedBook(null)} // додай можливість закрити
+          onClose={() => setSelectedBook(null)}
         />
       )}
     </div>
