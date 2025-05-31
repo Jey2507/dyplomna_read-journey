@@ -3,7 +3,7 @@ import css from "../MyLibraryBox/MyLibraryBox.module.css";
 import books from "../../assets/images/books.png";
 import { deleteMybook, myBooks } from "../../redux/books/operations";
 import { useDispatch, useSelector } from "react-redux";
-import { selectBooks } from "../../redux/books/selectors"; // <-- новий селектор
+import { selectBooks } from "../../redux/books/selectors";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
@@ -11,17 +11,20 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Toaster } from "react-hot-toast";
 
+import AddReadingModal from "../AddReadingModal/AddReadingModal";
+
 export default function MyLibraryBox() {
   const dispatch = useDispatch();
-  const library = useSelector(selectBooks); 
+  const library = useSelector(selectBooks);
   const [isOpen, setIsOpen] = useState(false);
+  const [selectedBook, setSelectedBook] = useState(null);
   const dropdownRef = useRef(null);
 
   const toggleDropdown = () => setIsOpen((prev) => !prev);
 
   useEffect(() => {
     dispatch(myBooks());
-  }, [dispatch, library]);
+  }, [dispatch]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -61,11 +64,19 @@ export default function MyLibraryBox() {
           >
             {library.map((book) => (
               <SwiperSlide className={css.newList} key={book._id}>
-                <div className={css.item}>
+                <div className={css.item} onClick={() => setSelectedBook(book)}>
                   <img className={css.imageMy} src={book.imageUrl} alt={book.title} />
                   <h2 className={css.myTitle}>{book.title}</h2>
                   <h3 className={css.myAuthor}>{book.author}</h3>
-                  <button className={css.buttonDelete} onClick={() => deleteBook(book._id)}>X</button>
+                  <button
+                    className={css.buttonDelete}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      deleteBook(book._id);
+                    }}
+                  >
+                    X
+                  </button>
                 </div>
               </SwiperSlide>
             ))}
@@ -97,6 +108,18 @@ export default function MyLibraryBox() {
           <li className={css.dropdownItemActive}>All books</li>
         </ul>
       </div>
+
+      {selectedBook && (
+        <AddReadingModal
+          id={selectedBook._id}
+          title={selectedBook.title}
+          author={selectedBook.author}
+          pages={selectedBook.totalPages}
+          image={selectedBook.imageUrl}
+          onClose={() => setSelectedBook(null)}
+        />
+      )}
+
       <Toaster />
     </div>
   );

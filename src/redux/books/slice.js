@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { recommend, addBook, deleteMybook, myBooks } from '../books/operations.js';
+import { addBook, deleteMybook, myBooks } from '../books/operations.js';
 
 const initialState = {
   items: [],
@@ -22,14 +22,14 @@ const booksSlice = createSlice({
         state.isLoading = true;
         state.error = null;
       })
-      .addCase(addBook.fulfilled, (state) => {
+      .addCase(addBook.fulfilled, (state, action) => {
         state.isLoading = false;
+        state.items.push(action.payload);
       })
       .addCase(addBook.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       })
-
       .addCase(deleteMybook.pending, (state) => {
         state.isLoading = true;
         state.error = null;
@@ -42,7 +42,6 @@ const booksSlice = createSlice({
         state.isLoading = false;
         state.error = action.payload;
       })
-
       .addCase(myBooks.pending, (state) => {
         state.isLoading = true;
         state.error = null;
