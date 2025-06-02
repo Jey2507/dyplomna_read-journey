@@ -1,0 +1,201 @@
+.mymain {
+    border-radius: 30px;
+    width: 335px;
+    height: 451px;
+    background: #1f1f1f;
+    padding: 20px;
+}
+
+.mytitle {
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 120%;
+    letter-spacing: -0.02em;
+    color: #f9f9f9;
+    margin-bottom: 8px;
+}
+
+.mylabel {
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 133%;
+    letter-spacing: -0.02em;
+    text-align: center;
+    color: #686868;
+    width: max-content;
+}
+
+.myinput {
+    height: 44px;
+    background: #262626;
+    border: none;
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 133%;
+    letter-spacing: -0.02em;
+    color: #f9f9f9;
+}
+
+input:focus,
+input:active {
+    border: none;
+    outline: none;
+    background: none;
+}
+
+.myinput::placeholder {
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 133%;
+    letter-spacing: -0.02em;
+    color: #f9f9f9;
+}
+
+.myzone {
+    border-radius: 12px;
+    width: 295px;
+    height: 44px;
+    background: #262626;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 0 14px 14px;
+    margin-bottom: 20px;
+}
+
+.mybutton {
+    border: 1px solid rgba(249, 249, 249, 0.2);
+    border-radius: 30px;
+    padding: 10px 20px;
+    width: max-content;
+    height: 38px;
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 129%;
+    letter-spacing: 0.02em;
+    color: #f9f9f9;
+    background: none;
+    margin-bottom: 40px;
+}
+
+.titleprogres {
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 100%;
+    letter-spacing: -0.02em;
+    color: #f9f9f9;
+    margin-bottom: 14px;
+}
+
+.descrprogres {
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 129%;
+    letter-spacing: -0.02em;
+    color: #686868;
+    margin-bottom: 20px;
+}
+
+.emoji {
+    display: block;
+    margin: 0 auto;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #262626;
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 100%;
+    letter-spacing: -0.02em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.statistics h2 {
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 100%;
+    letter-spacing: -0.02em;
+    color: #f9f9f9;
+    margin-bottom: 20px;
+}
+
+.progressCircle {
+   border-radius: 12px;
+    width: 295px;
+    height: 211px;
+    background: #262626;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.progressBar {
+    width: 116px;
+    height: 116px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1f1f1f;
+    margin-bottom: 21px;
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 111%;
+    letter-spacing: -0.02em;
+    color: #f9f9f9;
+}
+
+.percent {
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 129%;
+    letter-spacing: -0.02em;
+    color: #f9f9f9;
+    width: max-content;
+}
+
+.lastpage {
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 120%;
+    letter-spacing: -0.02em;
+    text-align: center;
+    color: #686868;
+    width: max-content;
+}
+
+.boxpercent {
+    display: flex;
+    justify-content: space-between;
+    width: 95px;
+}
+
+.greenblock {
+    border-radius: 4px;
+    width: 14px;
+    height: 14px;
+    background: #30b94d;
+}
+
+.boxflex {
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+height: 34px;
+width: 66px;
+}

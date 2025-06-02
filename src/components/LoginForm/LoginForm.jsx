@@ -14,38 +14,39 @@ const schema = yup.object().shape({
 });
 
 export default function LoginForm() {
-  const { reset } = useForm();
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
+  const [serverError, setServerError] = useState('');
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
+    mode: 'onSubmit', // Валідація після кліку
+    resolver: yupResolver(schema),
+  });
 
   const togglePasswordVisibility = () => {
     setShowPassword((prev) => !prev);
   };
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isDirty, isValid },
-  } = useForm({
-    mode: 'onChange',
-    resolver: yupResolver(schema),
-  });
-
   const onSubmit = async (data) => {
     const { email, password } = data;
-    
+    setServerError('');
+
     try {
       await dispatch(loginUser({ email, password })).unwrap();
-  
-      reset();  
-      toast.success("Welcome to ReadJourney!");
+      reset();
+      toast.success('Welcome to ReadJourney!');
     } catch (error) {
-      console.error("Login error:", error);
-      toast.error("Login failed. Please try again.");
+      console.error('Login error:', error);
+      setServerError('Incorrect email or password');
+      toast.error('Login failed. Please try again.');
     }
   };
 
-  
   return (
     <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
       <div className={css.inputGroup}>
@@ -60,32 +61,39 @@ export default function LoginForm() {
         </div>
         {errors.email && <p className={css.errorText}>{errors.email.message}</p>}
       </div>
+
       <div className={css.inputGroup}>
         <div className={css.boxFlex}>
           <label className={css.inputLabel}>Password:</label>
           <div className={css.inputWrapper}>
             <input
-            onClick={togglePasswordVisibility}
               type={showPassword ? 'text' : 'password'}
               placeholder="Enter your password"
               {...register('password')}
               className={`${css.input} ${errors.password ? css.errorInput : ''}`}
             />
-
+            <button
+              type="button"
+              onClick={togglePasswordVisibility}
+              className={css.togglePasswordBtn}
+            >
+              {showPassword ? 'Hide' : 'Show'}
+            </button>
           </div>
         </div>
         {errors.password && <p className={css.errorText}>{errors.password.message}</p>}
       </div>
 
       <div className={css.boxLogin}>
-        <button disabled={!isDirty || !isValid} className={css.submitButton} type="submit">
+        <button className={css.submitButton} type="submit">
           Log In
         </button>
-
         <Link className={css.signInLink} to="/register">
-        Already have an account?
+          Don't have an account?
         </Link>
       </div>
+
+      {serverError && <p className={css.errorText}>{serverError}</p>}
     </form>
   );
 }

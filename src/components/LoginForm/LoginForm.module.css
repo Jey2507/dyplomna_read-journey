@@ -28,9 +28,11 @@
     border-radius: 12px;
 }
 
-.input:focus {
+input:focus,
+input:active {
     border: none;
     outline: none;
+    background: none;
 }
 
 .inputLabel {

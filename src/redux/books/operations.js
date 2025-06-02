@@ -86,3 +86,84 @@ export const deleteMybook = createAsyncThunk(
     }
   }
 );
+
+
+export const startReading = createAsyncThunk(
+  '/books/reading/start',
+  async ({ bookId, startPage }, thunkAPI) => {
+    try {
+      const state = thunkAPI.getState();
+      const token = state.auth.token;
+
+      if (!token) {
+        return thunkAPI.rejectWithValue("No auth token found");
+      }
+
+      const response = await axios.post(
+        '/books/reading/start',
+        { "id": bookId, "page": startPage },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response?.data || error.message);
+    }
+  }
+);
+
+export const stopReading = createAsyncThunk(
+  '/books/reading/finish',
+  async ({ bookId, endPage }, thunkAPI) => {
+    try {
+      const state = thunkAPI.getState();
+      const token = state.auth.token;
+
+      if (!token) {
+        return thunkAPI.rejectWithValue("No auth token found");
+      }
+
+      const response = await axios.post(
+        '/books/reading/finish',
+        { "id": bookId, "page": endPage },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response?.data || error.message);
+    }
+  }
+);
+
+
+export const getBookById = createAsyncThunk(
+  "books/getById",
+  async (id, thunkAPI) => {
+    try {
+      const state = thunkAPI.getState();
+      const token = state.auth.token;
+
+      if (!token) {
+        return thunkAPI.rejectWithValue("No auth token found");
+      }
+
+      const response = await axios.get(`/books/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      return response.data;
+    } catch (error) {
+      toast.error("Failed to fetch book details");
+      return thunkAPI.rejectWithValue(error.response?.data || error.message);
+    }
+  }
+);
