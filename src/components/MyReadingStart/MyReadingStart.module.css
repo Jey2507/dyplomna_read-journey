@@ -65,6 +65,7 @@ input:active {
   gap: 10px;
   padding: 14px 0 14px 14px;
   margin-bottom: 20px;
+  position: relative;
 }
 
 .mybutton {
@@ -204,4 +205,14 @@ input:active {
   justify-content: space-between;
   height: 34px;
   width: 66px;
+}
+
+.error {
+  color: #ff0000;
+  font-size: 12px;
+  margin-top: 5px;
+  font-family: var(--font-family);
+  position: absolute;
+  bottom: -12px;
+  left: 2px;
 }

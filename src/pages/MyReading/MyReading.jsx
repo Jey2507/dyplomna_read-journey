@@ -10,7 +10,7 @@ import { useDispatch } from "react-redux";
 export default function MyReading() {
   const location = useLocation();
   const book = location.state;
-  const [timeleft, setTimeleft] = useState()
+  const [timeleft, setTimeleft] = useState();
   const [page, setPage] = useState(""); 
   const [isButtonActive, setIsButtonActive] = useState(false); 
 

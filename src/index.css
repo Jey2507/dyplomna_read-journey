@@ -43,7 +43,7 @@ button {
   cursor: pointer;
 }
 
-button, a, li, img {
+button, a, li, img, div, button {
   -webkit-tap-highlight-color: transparent;
 }
 

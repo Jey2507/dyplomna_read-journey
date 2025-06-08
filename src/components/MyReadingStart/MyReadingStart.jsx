@@ -27,7 +27,38 @@ export default function MyReadingStart({
     };
 
     fetchBook();
-  }, [bookId]); 
+  }, [bookId]);
+
+  // Обробник зміни інпута з валідацією
+  const handlePageChange = (e) => {
+    const value = Number(e.target.value);
+    const startPage = progress.pagesRead > 0 ? progress.pagesRead : 1; // Початкова сторінка
+
+    if (value < 0) {
+      setPage("0"); // Не дозволяємо від’ємні значення
+    } else if (value < startPage) {
+      setPage(startPage.toString()); // Обмежуємо мінімальну сторінку
+    } else if (progress.totalPages > 0 && value > progress.totalPages) {
+      setPage(progress.totalPages.toString()); // Обмежуємо максимум totalPages
+    } else {
+      setPage(e.target.value); // Дозволяємо введення, якщо в межах
+    }
+  };
+
+  // Перевірка перед викликом onHandleClick
+  const handleClickWithValidation = () => {
+    const value = Number(page);
+    const startPage = progress.pagesRead > 0 ? progress.pagesRead : 1;
+
+    if (value < startPage) {
+      alert(`Please start from page ${startPage}`);
+      return;
+    } else if (progress.totalPages > 0 && value > progress.totalPages) {
+      alert(`Page cannot exceed total pages (${progress.totalPages})`);
+      return;
+    }
+    onHandleClick(); // Виклик оригінальної функції, якщо валідація пройшла
+  };
 
   return (
     <div className={css.mymain}>
@@ -42,12 +73,20 @@ export default function MyReadingStart({
           type="number"
           id="start-page"
           value={page}
-          onChange={(e) => setPage(e.target.value)}
-          placeholder="0"
+          onChange={handlePageChange}
+          placeholder={progress.pagesRead > 0 ? progress.pagesRead.toString() : "1"}
           className={css.myinput}
+          min={progress.pagesRead > 0 ? progress.pagesRead : 1}
+          max={progress.totalPages > 0 ? progress.totalPages : undefined}
         />
+        {(progress.totalPages > 0 && Number(page) > progress.totalPages) && (
+          <p className={css.error}>Page cannot exceed total pages ({progress.totalPages})</p>
+        )}
+        {(progress.pagesRead > 0 && Number(page) < progress.pagesRead) && (
+          <p className={css.error}>Please start from page {progress.pagesRead}</p>
+        )}
       </div>
-      <button className={css.mybutton} onClick={onHandleClick}>
+      <button className={css.mybutton} onClick={handleClickWithValidation}>
         {isReading ? "Stop" : "To start"}
       </button>
 
