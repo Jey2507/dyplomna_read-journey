@@ -106,3 +106,31 @@ input:active {
     top: -6px;
     left: 14px;
 }
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.togglePassword {
+  position: absolute;
+  right: 10px; /* Відступ від правого краю поля */
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  color: #686868; /* Колір іконки за замовчуванням, узгоджений із вашим дизайном */
+  font-size: 18px; /* Розмір іконки */
+  transition: color 0.3s ease; /* Плавна зміна кольору при наведенні */
+}
+
+.togglePassword:hover {
+  color: #f9f9f9; /* Зміна кольору при наведенні для інтерактивності */
+}
+
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+  display: none; 
+}

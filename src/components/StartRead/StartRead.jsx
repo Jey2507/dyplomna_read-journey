@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom"
 import css from "../StartRead/StartRead.module.css"
+import { ArrowRightIcon } from "@heroicons/react/24/outline"
 
 export default function StartRead() {
     return (
@@ -22,7 +23,7 @@ export default function StartRead() {
             </ul>
             <NavLink className={css.boxLink} to='/mylibrary'>
                 <h3>My library</h3>
-                <h3>→</h3>
+                        <ArrowRightIcon className={css.arrow}/>
             </NavLink>
         </div>
     )

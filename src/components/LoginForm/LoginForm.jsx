@@ -7,6 +7,7 @@ import css from './LoginForm.module.css';
 import { useDispatch } from 'react-redux';
 import { login as loginUser } from '../../redux/auth/operation.js';
 import toast from 'react-hot-toast';
+import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'; // Іконки для "ока"
 
 const schema = yup.object().shape({
   email: yup.string().email('Invalid email address').required('Email is required'),
@@ -24,7 +25,7 @@ export default function LoginForm() {
     reset,
     formState: { errors },
   } = useForm({
-    mode: 'onSubmit', // Валідація після кліку
+    mode: 'onSubmit',
     resolver: yupResolver(schema),
   });
 
@@ -74,10 +75,11 @@ export default function LoginForm() {
             />
             <button
               type="button"
+              className={css.togglePassword}
               onClick={togglePasswordVisibility}
-              className={css.togglePasswordBtn}
+              aria-label={showPassword ? 'Hide password' : 'Show password'}
             >
-              {showPassword ? 'Hide' : 'Show'}
+              {showPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
             </button>
           </div>
         </div>

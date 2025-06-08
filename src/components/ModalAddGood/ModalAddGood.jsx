@@ -1,3 +1,4 @@
+import { XMarkIcon } from '@heroicons/react/24/outline';
 import css from './ModalAddGood.module.css';
 
 export default function ModalAddGood({ onClose }) {
@@ -10,7 +11,9 @@ export default function ModalAddGood({ onClose }) {
           <p>
             Your book is now in <span>the library!</span> The joy knows no bounds and now you can start your training
           </p>
-          <button onClick={onClose}>x</button>
+          <button onClick={onClose}>
+            <XMarkIcon className={css.closeIcon} /> 
+          </button>
         </div>
       </div>
     </div>

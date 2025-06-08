@@ -77,7 +77,12 @@
     background: none;
     border: none;
     color: white;
-    width: 20px;
-    height: 20px;
     cursor: pointer;
+}
+
+.closeIcon {
+  width: 20px;
+  height: 20px;
+  stroke-width: 2.5; 
+  color: #ffffff; 
 }

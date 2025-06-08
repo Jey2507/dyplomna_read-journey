@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import css from "../AddReadingModal/AddReadingModal.module.css";
+import { XMarkIcon } from "@heroicons/react/24/outline";
 
 export default function AddReadingModal({ id, title, author, pages, image, onClose }) {
   const navigate = useNavigate();
@@ -24,7 +25,9 @@ export default function AddReadingModal({ id, title, author, pages, image, onClo
         <h3>{author}</h3>
         <p>{pages} pages</p>
         <button className={css.button} onClick={AddFunction}>Start reading</button>
-        <button className={css.close} onClick={onClose}>x</button>
+        <button className={css.close} onClick={onClose}>
+          <XMarkIcon className={css.closeIcon} /> 
+        </button>
       </div>
     </div>
   );

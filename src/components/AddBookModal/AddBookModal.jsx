@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import css from "../AddBookModal/AddBookModal.module.css";
 import { addBook } from "../../redux/books/operations";
+import { XMarkIcon } from "@heroicons/react/24/outline";
 
 export default function AddBookModal({ id, title, author, pages, image, onClose, setter }) {
   const dispatch = useDispatch();
@@ -28,7 +29,9 @@ export default function AddBookModal({ id, title, author, pages, image, onClose,
           <h3>{author}</h3>
           <p>{pages} pages</p>
           <button className={css.button} onClick={AddFunction}>Add to library</button>
-          <button className={css.close} onClick={onClose}>x</button>
+          <button className={css.close} onClick={onClose}>
+            <XMarkIcon className={css.closeIcon} /> 
+          </button>
         </div>
       </div>
     </>

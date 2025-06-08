@@ -1,27 +1,30 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { recommend } from "../../redux/books/operations";
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
-
 import css from "./Recommended.module.css";
 import AddBookModal from "../AddBookModal/AddBookModal";
+import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
 
-export default function Recommended({buble}) {
+export default function Recommended({ buble }) {
   const dispatch = useDispatch();
   const [recommendedBooks, setRecommendedBooks] = useState([]);
   const [selectedBook, setSelectedBook] = useState(null);
 
   const prevRef = useRef(null);
   const nextRef = useRef(null);
+  const swiperRef = useRef(null);
+
+  const [isFirstSlide, setIsFirstSlide] = useState(true);
+  const [isLastSlide, setIsLastSlide] = useState(false);
 
   useEffect(() => {
     const fetchRecommendedBooks = async () => {
       try {
-        const result = await dispatch(recommend()).unwrap(); // отримуємо payload напряму
+        const result = await dispatch(recommend()).unwrap();
         setRecommendedBooks(result);
       } catch (error) {
         console.error("Failed to fetch recommended books:", error);
@@ -39,6 +42,18 @@ export default function Recommended({buble}) {
     setSelectedBook(null);
   };
 
+  useEffect(() => {
+    if (swiperRef.current) {
+      swiperRef.current.params.navigation.prevEl = prevRef.current;
+      swiperRef.current.params.navigation.nextEl = nextRef.current;
+      swiperRef.current.navigation.init();
+      swiperRef.current.navigation.update();
+      // оновити статус стрілок після ініціалізації
+      setIsFirstSlide(swiperRef.current.isBeginning);
+      setIsLastSlide(swiperRef.current.isEnd);
+    }
+  }, [recommendedBooks]);
+
   return (
     <div className={css.container}>
       <h2 className={css.title}>Recommended</h2>
@@ -50,8 +65,17 @@ export default function Recommended({buble}) {
           spaceBetween={21}
           width={280}
           onBeforeInit={(swiper) => {
+            swiperRef.current = swiper;
             swiper.params.navigation.prevEl = prevRef.current;
             swiper.params.navigation.nextEl = nextRef.current;
+          }}
+          onSwiper={(swiper) => {
+            setIsFirstSlide(swiper.isBeginning);
+            setIsLastSlide(swiper.isEnd);
+          }}
+          onSlideChange={(swiper) => {
+            setIsFirstSlide(swiper.isBeginning);
+            setIsLastSlide(swiper.isEnd);
           }}
           navigation={{
             prevEl: prevRef.current,
@@ -81,8 +105,18 @@ export default function Recommended({buble}) {
         </Swiper>
 
         <div className={css.buttons}>
-          <div className={css.button} ref={prevRef}>←</div>
-          <div className={css.button} ref={nextRef}>→</div>
+          <div
+            className={`${css.button} ${isFirstSlide ? css.disabled : ""}`}
+            ref={prevRef}
+          >
+            <ArrowLeftIcon className={css.arrowIcon} />
+          </div>
+          <div
+            className={`${css.button} ${isLastSlide ? css.disabled : ""}`}
+            ref={nextRef}
+          >
+            <ArrowRightIcon className={css.arrowIcon} />
+          </div>
         </div>
       </div>
 

@@ -104,3 +104,31 @@
     top: -6px;
     left: 14px;
 }
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.togglePassword {
+  position: absolute;
+  right: 10px; 
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  color: #686868; 
+  font-size: 18px; 
+  transition: color 0.3s ease; 
+}
+
+.togglePassword:hover {
+  color: #f9f9f9; 
+}
+
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+  display: none; 
+}

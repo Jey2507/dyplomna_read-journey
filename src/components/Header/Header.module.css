@@ -133,3 +133,35 @@
   background-color: #4f92f7;
   border-radius: 3px; 
 }
+
+.book {
+    color: white;
+    width: 42px;
+    height: 17px;
+}
+
+.close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.closeIcon {
+  width: 20px;
+  height: 20px;
+  stroke-width: 2.5; 
+  color: #ffffff; 
+}
+
+.burgerBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.burgerIcon {
+  width: 24px;
+  height: 24px;
+  stroke-width: 2; 
+  color: #ffffff; 
+}

@@ -1,98 +1,33 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import {
-  startReading,
-  stopReading,
-  getBookById,
-} from "../../redux/books/operations.js";
+import { getBookById } from "../../redux/books/operations.js";
 import css from "../MyReadingStart/MyReadingStart.module.css";
 
-export default function MyReadingStart({ bookId }) {
+export default function MyReadingStart({
+  bookId,
+  onHandleClick,
+  page,
+  setPage,
+  isReading,
+  progress,
+  updateReadingState,
+}) {
   const dispatch = useDispatch();
-  const [isReading, setIsReading] = useState(false);
-  const [page, setPage] = useState("");
-  const [book, setBook] = useState(null);
-  const [error, setError] = useState(null);
-  const [progress, setProgress] = useState({ pagesRead: 0, totalPages: 0 });
 
   useEffect(() => {
-    if (!bookId) {
-      setError("Book ID is missing");
-      return;
-    }
+    if (!bookId) return;
 
     const fetchBook = async () => {
       try {
-        const result = await dispatch(getBookById(bookId)).unwrap();
-        setBook(result);
-        setError(null);
-
-        let pagesRead = 0;
-        if (result.progress && result.progress.length > 0) {
-          const lastProgress = result.progress[result.progress.length - 1];
-          if (lastProgress.status === "inactive" && lastProgress.finishPage) {
-            pagesRead = lastProgress.finishPage;
-          } else if (lastProgress.status === "active" && lastProgress.startPage) {
-            pagesRead = lastProgress.startPage; // Використовуємо startPage для активної сесії
-          }
-        }
-        setProgress({
-          pagesRead: pagesRead || 0,
-          totalPages: result.totalPages || 0,
-        });
-        // Оновлюємо isReading на основі статусу останньої сесії
-        setIsReading(
-          result.progress && result.progress.length > 0 && result.progress[result.progress.length - 1].status === "active"
-        );
+        await dispatch(getBookById(bookId)).unwrap();
+        await updateReadingState(); // Оновлення стану лише один раз
       } catch (err) {
-        setError("Failed to load book details");
         console.error("Error fetching book:", err);
       }
     };
 
     fetchBook();
-  }, [bookId, dispatch]);
-
-  const handleClick = async () => {
-    if (!page || Number(page) < 1) {
-      alert("Please enter a valid page number");
-      return;
-    }
-
-    try {
-      if (!isReading) {
-        await dispatch(startReading({ bookId, startPage: Number(page) }));
-      } else {
-        await dispatch(stopReading({ bookId, endPage: Number(page) }));
-      }
-
-      // Оновлення прогресу після дії
-      const result = await dispatch(getBookById(bookId)).unwrap();
-      let pagesRead = 0;
-      if (result.progress && result.progress.length > 0) {
-        const lastProgress = result.progress[result.progress.length - 1];
-        if (lastProgress.status === "inactive" && lastProgress.finishPage) {
-          pagesRead = lastProgress.finishPage;
-        } else if (lastProgress.status === "active" && lastProgress.startPage) {
-          pagesRead = lastProgress.startPage; // Використовуємо startPage для активної сесії
-        }
-      }
-      setProgress({
-        pagesRead: pagesRead || 0,
-        totalPages: result.totalPages || 0,
-      });
-      setIsReading(!isReading);
-    } catch (error) {
-      console.error("Reading action failed:", error);
-    }
-  };
-
-  const percentage =
-    progress.totalPages > 0
-      ? ((progress.pagesRead / progress.totalPages) * 100).toFixed(2)
-      : 0;
-
-  console.log(percentage);
+  }, [bookId]); 
 
   return (
     <div className={css.mymain}>
@@ -112,7 +47,7 @@ export default function MyReadingStart({ bookId }) {
           className={css.myinput}
         />
       </div>
-      <button className={css.mybutton} onClick={handleClick}>
+      <button className={css.mybutton} onClick={onHandleClick}>
         {isReading ? "Stop" : "To start"}
       </button>
 
@@ -120,12 +55,51 @@ export default function MyReadingStart({ bookId }) {
         <div className={css.statistics}>
           <h2>Statistics</h2>
           <div className={css.progressCircle}>
-            <div className={css.progressBar}>100%</div>
+            <div className={css.progressBar}>
+              <svg width="116" height="116" viewBox="0 0 116 116">
+                <circle
+                  cx="58"
+                  cy="58"
+                  r="52"
+                  fill="none"
+                  stroke="#1F1F1F"
+                  strokeWidth="10"
+                />
+                <circle
+                  cx="58"
+                  cy="58"
+                  r="52"
+                  fill="none"
+                  stroke="#30b94d"
+                  strokeWidth="10"
+                  strokeDasharray={326.56}
+                  strokeDashoffset={
+                    326.56 - ((progress.pagesRead / progress.totalPages) * 360 || 0)
+                  }
+                  transform="rotate(-90 58 58)"
+                  strokeLinecap="round"
+                />
+                <text
+                  x="50%"
+                  y="50%"
+                  dominantBaseline="middle"
+                  textAnchor="middle"
+                  fontFamily="var(--font-family)"
+                  fontWeight="700"
+                  fontSize="18px"
+                  fill="#f9f9f9"
+                >
+                  100%
+                </text>
+              </svg>
+            </div>
             <div className={css.progressDetails}>
               <div className={css.boxpercent}>
                 <div className={css.greenblock}></div>
                 <div className={css.boxflex}>
-                  <p className={css.percent}>{percentage}%</p>
+                  <p className={css.percent}>
+                    {((progress.pagesRead / progress.totalPages) * 100 || 0).toFixed(2)}%
+                  </p>
                   <p className={css.lastpage}>
                     {progress.pagesRead} pages read
                   </p>

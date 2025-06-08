@@ -7,6 +7,7 @@ import css from './RegisterForm.module.css';
 import { useDispatch } from 'react-redux';
 import { register as registerUser } from '../../redux/auth/operation.js';
 import toast from 'react-hot-toast';
+import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'; // Іконки для "ока"
 
 const schema = yup.object().shape({
   name: yup.string().min(2, 'Name must be at least 2 characters').required('Name is required'),
@@ -25,7 +26,7 @@ export default function RegisterForm() {
     reset,
     formState: { errors },
   } = useForm({
-    mode: 'onSubmit', // Валідація лише при сабміті
+    mode: 'onSubmit',
     resolver: yupResolver(schema),
   });
 
@@ -84,13 +85,15 @@ export default function RegisterForm() {
               placeholder="Enter your password"
               {...register('password')}
               className={`${css.input} ${errors.password ? css.errorInput : ''}`}
+              autoComplete="new-password" /* Допомагає уникнути автозаповнення */
             />
             <button
               type="button"
+              className={css.togglePassword}
               onClick={togglePasswordVisibility}
-              className={css.togglePasswordBtn}
+              aria-label={showPassword ? 'Hide password' : 'Show password'}
             >
-              {showPassword ? 'Hide' : 'Show'}
+              {showPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
             </button>
           </div>
         </div>

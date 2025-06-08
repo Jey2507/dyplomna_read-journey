@@ -8,6 +8,7 @@ import "swiper/css/navigation";
 import css from "../../components/MyRecommend/MyRecommend.module.css";
 import { NavLink } from "react-router-dom";
 import AddBookModal from "../AddBookModal/AddBookModal";
+import { ArrowRightIcon } from "@heroicons/react/24/outline";
 
 export default function MyRecommend({buble}) {
   const dispatch = useDispatch();
@@ -80,7 +81,7 @@ export default function MyRecommend({buble}) {
 
       <NavLink className={css.boxLink} to="/readjourney">
         <h3>Home</h3>
-        <h3>→</h3>
+        <ArrowRightIcon className={css.arrow}/>
       </NavLink>
 
       {selectedBook && (

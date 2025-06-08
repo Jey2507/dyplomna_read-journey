@@ -10,6 +10,7 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Toaster } from "react-hot-toast";
+import { LuTrash2 } from "react-icons/lu";
 
 import AddReadingModal from "../AddReadingModal/AddReadingModal";
 
@@ -75,7 +76,7 @@ export default function MyLibraryBox() {
                       deleteBook(book._id);
                     }}
                   >
-                    X
+                    <LuTrash2 />
                   </button>
                 </div>
               </SwiperSlide>
