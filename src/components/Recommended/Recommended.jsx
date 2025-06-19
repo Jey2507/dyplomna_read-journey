@@ -25,6 +25,7 @@ export default function Recommended({ buble }) {
     const fetchRecommendedBooks = async () => {
       try {
         const result = await dispatch(recommend()).unwrap();
+        console.log("Fetched books:", result.length); // Відлагодження кількості слайдів
         setRecommendedBooks(result);
       } catch (error) {
         console.error("Failed to fetch recommended books:", error);
@@ -48,7 +49,6 @@ export default function Recommended({ buble }) {
       swiperRef.current.params.navigation.nextEl = nextRef.current;
       swiperRef.current.navigation.init();
       swiperRef.current.navigation.update();
-      // оновити статус стрілок після ініціалізації
       setIsFirstSlide(swiperRef.current.isBeginning);
       setIsLastSlide(swiperRef.current.isEnd);
     }
@@ -64,6 +64,8 @@ export default function Recommended({ buble }) {
           slidesPerView={2}
           spaceBetween={21}
           width={280}
+          autoHeight={true} 
+          slidesPerColumnFill={'row'}
           onBeforeInit={(swiper) => {
             swiperRef.current = swiper;
             swiper.params.navigation.prevEl = prevRef.current;
@@ -83,6 +85,13 @@ export default function Recommended({ buble }) {
           }}
           breakpoints={{
             640: { slidesPerView: 2 },
+            768: { 
+              slidesPerView: 4, 
+              slidesPerColumn: 2, 
+              spaceBetween: 25, 
+              width: 624
+              // Видалено height: 301 для адаптивності
+            },
             1024: { slidesPerView: 3 },
             1440: { slidesPerView: 4 },
           }}

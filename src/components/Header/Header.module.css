@@ -159,9 +159,80 @@
   justify-content: center;
 }
 
+.logoutLaptop {
+    display: none;
+}
+
 .burgerIcon {
   width: 24px;
   height: 24px;
   stroke-width: 2; 
   color: #ffffff; 
+}
+
+.flexLaptop {
+    display: none;
+}
+
+@media screen and (min-width: 768px) {
+    .burgerBtn {
+        display: none;
+    }
+
+    .boxFlex {
+        align-items: center;
+    }
+
+    .header {
+        width: 704px;
+        height: 74px;
+    }
+
+    .flexDouble {
+        display: flex;
+        gap: 94px;
+        align-items: center;
+    }
+
+    .flexLaptop {
+        display: flex;
+        gap: 32px;
+    }
+
+    .isActive::after {
+        bottom: -8px;
+    }
+
+    .link {
+        font-size: 16px;
+        line-height: 112%;
+        letter-spacing: -0.02em;
+        height: max-content;
+    }
+
+    .logoUser {
+        width: 40px;
+        height: 40px;
+        font-family: var(--font-family);
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 112%;
+        letter-spacing: -0.02em;
+    }
+
+    .logoutLaptop {
+        display: block;
+        font-family: var(--font-family);
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 112%;
+        letter-spacing: 0.02em;
+        color: #f9f9f9;
+        border: 1px solid rgba(249, 249, 249, 0.2);
+        border-radius: 30px;
+        padding: 12px 28px;
+        width: max-content;
+        height: 42px;
+        background: none;
+    }
 }

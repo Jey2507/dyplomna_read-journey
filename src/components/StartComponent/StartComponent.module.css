@@ -21,3 +21,36 @@
     padding: 20px 20px 40px 20px;
     margin-top: 20px;
 }
+
+@media screen and (min-width: 768px) {
+    .box {
+        border-radius: 30px;
+        width: 704px;
+        height: 960px;
+        padding: 40px 64px;
+    }
+
+    .mainText {
+        margin: 157px 0px 40px 0px;
+        width: 444px;
+        font-weight: 700;
+        font-size: 64px;
+        line-height: 0.94;
+        color: #f9f9f9;
+    }
+
+    .flexBook {
+        display: flex;
+        gap: 4px;
+    }
+
+    .flexBook p {
+        font-family: var(--font-family);
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 100%;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        color: #f9f9f9;
+    }
+}

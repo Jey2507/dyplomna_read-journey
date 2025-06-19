@@ -5,7 +5,6 @@ import { selectUser } from "../../redux/auth/selectors";
 import { NavLink } from "react-router-dom";
 import { logout } from "../../redux/auth/operation";
 import toast from "react-hot-toast";
-import { GiOpenBook } from "react-icons/gi";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline"; // Тонші іконки
 
 export default function Header() {
@@ -34,12 +33,34 @@ export default function Header() {
           <rect y="13" width="42" height="4" fill="#F9F9F9" />
         </svg>
 
+        <div className={css.flexDouble}>
+        <div className={css.flexLaptop}>
+              <NavLink
+                to="/readjourney"
+                className={({ isActive }) => `${css.link} ${isActive ? css.isActive : ""}`}
+                onClick={close}
+              >
+                Home
+              </NavLink>
+              <NavLink
+                to="/mylibrary"
+                className={({ isActive }) => `${css.link} ${isActive ? css.isActive : ""}`}
+                onClick={close}
+              >
+                My library
+              </NavLink>
+            </div>
+
         <div className={css.boxFlex}>
           <div className={css.logoUser}>{letter.toUpperCase()}</div>
 
+          <button className={css.logoutLaptop} onClick={handleLogout}>
+              Log out
+            </button>
           <button className={css.burgerBtn} onClick={open}>
             <Bars3Icon className={css.burgerIcon} /> 
           </button>
+        </div>
         </div>
 
         <div className={`${css.burgerMenu} ${isOpen ? css.active : ""}`}>

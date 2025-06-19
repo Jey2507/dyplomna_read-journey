@@ -43,3 +43,9 @@
 .icon {
     animation: moveArrow 2s ease-in-out infinite; 
   }
+
+@media screen and (min-width: 768px) {
+    .button {
+        height: 72px;
+    }
+}

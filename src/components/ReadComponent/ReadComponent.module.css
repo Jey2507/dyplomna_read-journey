@@ -9,3 +9,14 @@
     padding: 20px;
 }
 
+@media screen and (min-width: 768px) {
+    .main {
+        width: 704px;
+        height: 336px;
+        display: flex;
+        flex-direction: row;
+        align-items: start;
+        justify-content: space-between;
+        padding: 32px;
+    }
+}

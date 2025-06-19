@@ -86,3 +86,47 @@
   width: 20px;
   height: 20px;
 }
+
+
+@media screen and (min-width: 768px) {
+    .divRead {
+        width: 313px;
+        height: 272px;
+    }
+
+    .divRead h2 {
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 100%;
+        letter-spacing: -0.02em;
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .descr {
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 129%;
+        letter-spacing: -0.02em;
+        width: 197px;
+    }
+
+    .divCircle {
+        width: 44px;
+        height: 44px;
+    }
+
+    .boxLink h3 {
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 129%;
+        letter-spacing: -0.02em;
+        text-decoration: underline;
+        text-decoration-skip-ink: none;
+    }
+
+    .divRead ul {
+        margin-bottom: 26px;
+    }
+
+}
