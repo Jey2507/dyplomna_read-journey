@@ -59,6 +59,10 @@ export default function MyLibraryBox() {
             breakpoints={{
               640: { slidesPerView: 2 },
               1024: { slidesPerView: 3 },
+              768: { 
+              slidesPerView: 4, 
+              spaceBetween: 25, 
+            },
               1440: { slidesPerView: 4 },
             }}
             className={css.swiper}

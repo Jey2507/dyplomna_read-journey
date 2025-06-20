@@ -4,11 +4,11 @@ import css from '../MyFilter/MyFilter.module.css';
 export default function MyFilter({ onFilter }) {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
-  const [pages, setPages] = useState(''); // ✅ новий стан
+  const [pages, setPages] = useState(''); 
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onFilter({ title, author, pages }); // ✅ додали pages
+    onFilter({ title, author, pages }); 
   };
 
   return (

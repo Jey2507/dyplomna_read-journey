@@ -57,13 +57,14 @@ export default function MyReadingStart({
       alert(`Page cannot exceed total pages (${progress.totalPages})`);
       return;
     }
-    onHandleClick(); // Виклик оригінальної функції, якщо валідація пройшла
+    onHandleClick(); 
   };
 
   return (
     <div className={css.mymain}>
+      <div>
       <h2 className={css.mytitle}>
-        {isReading ? "Stop Reading" : "Start Reading"}
+        {isReading ? "Stop Page" : "Start Page"}
       </h2>
       <div className={css.myzone}>
         <label className={css.mylabel} htmlFor="start-page">
@@ -89,6 +90,7 @@ export default function MyReadingStart({
       <button className={css.mybutton} onClick={handleClickWithValidation}>
         {isReading ? "Stop" : "To start"}
       </button>
+      </div>
 
       {progress.pagesRead > 0 ? (
         <div className={css.statistics}>

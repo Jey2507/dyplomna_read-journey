@@ -216,3 +216,84 @@ input:active {
   bottom: -12px;
   left: 2px;
 }
+
+@media screen and (min-width: 768px) {
+  .mymain {
+    width: 704px;
+    height: 336px;
+    display: flex;
+    gap: 40px;
+    padding: 32px 16px 16px 32px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .mytitle {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 129%;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+    padding-left: 14px;
+  }
+
+  .myzone {
+    height: 50px;
+  }
+
+  .mybutton {
+    padding: 12px 28px;
+    width: max-content;
+    height: 42px;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 112%;
+    letter-spacing: 0.02em;
+  }
+
+  .titleprogres {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 100%;
+    letter-spacing: -0.02em;
+    margin-bottom: 14px;
+  }
+
+  .descrprogres {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 129%;
+    letter-spacing: -0.02em;
+    margin-bottom: 50px;
+  }
+
+  .emoji {
+    width: 100px;
+    height: 100px;
+    font-size: 50px;
+  }
+
+  .statistics h2 {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 100%;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+  }
+
+  .progressCircle {
+    width: 321px;
+    height: 252px;
+    padding: 28px;
+  }
+
+  .progressBar {
+    margin-bottom: 16px;
+  }
+
+  .progressBar svg {
+    width: 138px;
+    height: 138px;
+  }
+  
+}

@@ -90,7 +90,6 @@ export default function Recommended({ buble }) {
               slidesPerColumn: 2, 
               spaceBetween: 25, 
               width: 624
-              // Видалено height: 301 для адаптивності
             },
             1024: { slidesPerView: 3 },
             1440: { slidesPerView: 4 },

@@ -51,6 +51,11 @@ export default function MyRecommend({buble}) {
           }}
           breakpoints={{
             640: { slidesPerView: 2 },
+            768: { 
+              slidesPerView: 3, 
+              spaceBetween: 20, 
+              width: 254
+            },
             1024: { slidesPerView: 3 },
             1440: { slidesPerView: 4 },
           }}

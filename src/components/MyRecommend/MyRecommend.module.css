@@ -86,3 +86,19 @@
   width: 20px;
   height: 20px;
 }
+
+@media screen and (min-width: 768px) {
+  .container {
+    width: 313px;
+    height: 272px;
+    padding: 26px 20px;
+  }
+
+  .title {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 100%;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+    }
+}

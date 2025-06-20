@@ -131,4 +131,14 @@
     width: 137px;
     height: auto;
   }
+
+  .buttons {
+    top: 40px;
+    right: 40px;
+  }
+
+  .button {
+    width: 40px;
+    height: 40px;
+  }
 }
