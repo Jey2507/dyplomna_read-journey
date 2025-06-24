@@ -91,6 +91,11 @@ export default function Recommended({ buble }) {
               spaceBetween: 25, 
               width: 624
             },
+            1440: {
+              width: 800,
+              slidesPerView: 5,
+              spaceBetween: 20,
+            }
           }}
           className={css.swiper}
         >

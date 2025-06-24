@@ -53,7 +53,7 @@ export default function Header() {
 
         <div className={css.boxFlex}>
           <div className={css.logoUser}>{letter.toUpperCase()}</div>
-
+          <p className={css.nameUser}>{name}</p>
           <button className={css.logoutLaptop} onClick={handleLogout}>
               Log out
             </button>

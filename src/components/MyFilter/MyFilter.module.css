@@ -157,3 +157,9 @@ input[type="number"] {
         color: #f9f9f9;
     }
 }
+
+@media screen and (min-width: 1440px) { 
+    .inputGroup {
+        width: 419px;
+    }
+}

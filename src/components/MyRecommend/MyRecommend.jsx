@@ -56,6 +56,11 @@ export default function MyRecommend({buble}) {
               spaceBetween: 20, 
               width: 254
             },
+            1440: {
+              width: 400,
+              slidesPerView: 4,
+              spaceBetween: 12,
+            }
 
           }}
           className={css.swiper}

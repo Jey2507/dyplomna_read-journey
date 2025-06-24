@@ -20,3 +20,18 @@
         display: none;
     }
 }
+
+@media screen and (min-width: 1440px) {
+    .box {
+        display: flex;
+        width: 600px;
+        height: 736px;
+        margin-top: 0;
+    
+    }
+
+    .image {
+        width: 405px;
+        height: 592px;
+    }
+}

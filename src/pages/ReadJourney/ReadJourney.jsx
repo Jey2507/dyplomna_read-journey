@@ -7,8 +7,7 @@ import Filter from "../../components/Filter/Filter.jsx";
 import StartRead from "../../components/StartRead/StartRead.jsx";
 import { useState } from "react";
 import ModalAddGood from "../../components/ModalAddGood/ModalAddGood.jsx";
-
-
+import css from "../ReadJourney/ReadJourney.module.css"
 
 export default function ReadJourney() {
     const [showSuccessModal, setShowSuccessModal] = useState(false);
@@ -18,12 +17,14 @@ export default function ReadJourney() {
         <>
         <Container>
             <Header />
-            <ReadComponent>
-                <Filter  />
-                <StartRead />
-            </ReadComponent>
-                
-            <Recommended buble={setShowSuccessModal} />
+            <div className={css.flex}> 
+                <ReadComponent>
+                    <Filter  />
+                    <StartRead />
+                </ReadComponent>
+                    
+                <Recommended buble={setShowSuccessModal} />
+            </div>
             <Toaster position="top-right"/>
             {showSuccessModal && <ModalAddGood  onClose={() => setShowSuccessModal(false)} />}
         </Container>

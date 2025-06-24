@@ -84,6 +84,7 @@ console.log(timeleft)
   return (
     <Container>
       <Header />
+      <div className={css.flexOther}>
       <MyReadingStart
         bookId={book.id}
         onHandleClick={handleClick}
@@ -109,6 +110,7 @@ console.log(timeleft)
       ) : (
         <p>No book data provided.</p>
       )}
+      </div>
     </Container>
   );
 }

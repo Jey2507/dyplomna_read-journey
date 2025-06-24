@@ -217,6 +217,18 @@ input:active {
   left: 2px;
 }
 
+.myinput:disabled {
+  opacity: 0.4; /* Ще більше затемнення при блокуванні */
+  border-color: #555; /* Зміна кольору бордера */
+}
+
+.mybutton:disabled {
+  opacity: 0.4; /* Ще більше затемнення при блокуванні */
+  background-color: #444; /* Темніший фон */
+  cursor: not-allowed; /* Зміна курсору на "неактивний" */
+  border-color: #555; /* Зміна кольору бордера */
+}
+
 @media screen and (min-width: 768px) {
   .mymain {
     width: 704px;
@@ -296,4 +308,38 @@ input:active {
     height: 138px;
   }
   
+}
+
+@media screen and (min-width: 1440px) {
+  .mymain {
+      flex-direction: column;
+      border-radius: 30px;
+      width: 353px;
+      height: 651px;
+      justify-content: space-between;
+      padding: 40px 20px 34px 20px;
+      flex-grow: 0;
+      flex-shrink: 0;
+      flex-basis: 33.4%;
+  }
+
+  .progresDiv {
+    height: 100%;
+  }
+
+  .myzone {
+    width: 419px;
+  }
+
+  .progressCircle {
+    width: 419px;
+  }
+
+  .lastpage {
+    font-size: 14px;
+  }
+
+  .percent {
+    font-size: 16px;
+  }
 }

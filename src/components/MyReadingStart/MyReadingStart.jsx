@@ -20,7 +20,7 @@ export default function MyReadingStart({
     const fetchBook = async () => {
       try {
         await dispatch(getBookById(bookId)).unwrap();
-        await updateReadingState(); // Оновлення стану лише один раз
+        await updateReadingState();
       } catch (err) {
         console.error("Error fetching book:", err);
       }
@@ -29,67 +29,63 @@ export default function MyReadingStart({
     fetchBook();
   }, [bookId]);
 
-  // Обробник зміни інпута з валідацією
   const handlePageChange = (e) => {
-    const value = Number(e.target.value);
-    const startPage = progress.pagesRead > 0 ? progress.pagesRead : 1; // Початкова сторінка
-
-    if (value < 0) {
-      setPage("0"); // Не дозволяємо від’ємні значення
-    } else if (value < startPage) {
-      setPage(startPage.toString()); // Обмежуємо мінімальну сторінку
-    } else if (progress.totalPages > 0 && value > progress.totalPages) {
-      setPage(progress.totalPages.toString()); // Обмежуємо максимум totalPages
-    } else {
-      setPage(e.target.value); // Дозволяємо введення, якщо в межах
-    }
+    setPage(e.target.value);
   };
 
-  // Перевірка перед викликом onHandleClick
   const handleClickWithValidation = () => {
     const value = Number(page);
     const startPage = progress.pagesRead > 0 ? progress.pagesRead : 1;
+    const totalPages = progress.totalPages || Infinity;
+    const maxAllowedPages = totalPages || 10000;
+
+    if (isNaN(value)) {
+      alert("Please enter a valid page number");
+      return;
+    }
 
     if (value < startPage) {
       alert(`Please start from page ${startPage}`);
       return;
-    } else if (progress.totalPages > 0 && value > progress.totalPages) {
-      alert(`Page cannot exceed total pages (${progress.totalPages})`);
+    }
+
+    if (value > maxAllowedPages) {
+      alert(`Page cannot exceed ${maxAllowedPages} (total pages: ${totalPages || "unknown"})`);
       return;
     }
-    onHandleClick(); 
+
+    onHandleClick();
   };
+
+  const isBookCompleted = progress.pagesRead >= progress.totalPages;
 
   return (
     <div className={css.mymain}>
       <div>
-      <h2 className={css.mytitle}>
-        {isReading ? "Stop Page" : "Start Page"}
-      </h2>
-      <div className={css.myzone}>
-        <label className={css.mylabel} htmlFor="start-page">
-          Page:
-        </label>
-        <input
-          type="number"
-          id="start-page"
-          value={page}
-          onChange={handlePageChange}
-          placeholder={progress.pagesRead > 0 ? progress.pagesRead.toString() : "1"}
-          className={css.myinput}
-          min={progress.pagesRead > 0 ? progress.pagesRead : 1}
-          max={progress.totalPages > 0 ? progress.totalPages : undefined}
-        />
-        {(progress.totalPages > 0 && Number(page) > progress.totalPages) && (
-          <p className={css.error}>Page cannot exceed total pages ({progress.totalPages})</p>
-        )}
-        {(progress.pagesRead > 0 && Number(page) < progress.pagesRead) && (
-          <p className={css.error}>Please start from page {progress.pagesRead}</p>
-        )}
-      </div>
-      <button className={css.mybutton} onClick={handleClickWithValidation}>
-        {isReading ? "Stop" : "To start"}
-      </button>
+        <h2 className={css.mytitle}>
+          {isReading ? "Stop Page" : "Start Page"}
+        </h2>
+        <div className={css.myzone}>
+          <label className={css.mylabel} htmlFor="start-page">
+            Page:
+          </label>
+          <input
+            type="number"
+            id="start-page"
+            value={page}
+            onChange={handlePageChange}
+            placeholder={progress.pagesRead > 0 ? progress.pagesRead.toString() : "1"}
+            className={css.myinput}
+            disabled={isBookCompleted}
+          />
+        </div>
+        <button
+          className={css.mybutton}
+          onClick={handleClickWithValidation}
+          disabled={isBookCompleted}
+        >
+          {isReading ? "Stop" : "To start"}
+        </button>
       </div>
 
       {progress.pagesRead > 0 ? (
@@ -115,7 +111,9 @@ export default function MyReadingStart({
                   strokeWidth="10"
                   strokeDasharray={326.56}
                   strokeDashoffset={
-                    326.56 - ((progress.pagesRead / progress.totalPages) * 360 || 0)
+                    progress.pagesRead >= progress.totalPages
+                      ? 0
+                      : 326.56 - ((progress.pagesRead / progress.totalPages) * 326.56)
                   }
                   transform="rotate(-90 58 58)"
                   strokeLinecap="round"
@@ -130,7 +128,9 @@ export default function MyReadingStart({
                   fontSize="18px"
                   fill="#f9f9f9"
                 >
-                  100%
+                  {progress.pagesRead >= progress.totalPages
+                    ? "100.00%"
+                    : ((progress.pagesRead / progress.totalPages) * 100).toFixed(2) + "%"}
                 </text>
               </svg>
             </div>
@@ -139,7 +139,9 @@ export default function MyReadingStart({
                 <div className={css.greenblock}></div>
                 <div className={css.boxflex}>
                   <p className={css.percent}>
-                    {((progress.pagesRead / progress.totalPages) * 100 || 0).toFixed(2)}%
+                    {progress.pagesRead >= progress.totalPages
+                      ? "100.00%"
+                      : ((progress.pagesRead / progress.totalPages) * 100).toFixed(2) + "%"}
                   </p>
                   <p className={css.lastpage}>
                     {progress.pagesRead} pages read

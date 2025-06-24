@@ -205,3 +205,13 @@ input[type="password"]::-ms-clear {
         margin-top: 146px;
     }
 }
+
+@media screen and (min-width: 1440px) { 
+    .submitButton {
+        margin-top: 0px;
+    }
+
+    .boxLogin {
+        margin-top: 82px;
+    }
+}

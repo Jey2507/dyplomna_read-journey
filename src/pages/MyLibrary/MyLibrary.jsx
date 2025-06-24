@@ -6,6 +6,7 @@ import MyLibraryBox from "../../components/MyLibraryBox/MyLibraryBox"
 import MyRecommend from "../../components/MyRecommend/MyRecommend"
 import ReadComponent from "../../components/ReadComponent/ReadComponent"
 import ModalAddGood from "../../components/ModalAddGood/ModalAddGood"
+import css from "../MyLibrary/MyLibrary.module.css"
 
 export default function MyLibrary() {
      const [showSuccessModal, setShowSuccessModal] = useState(false);
@@ -13,11 +14,13 @@ export default function MyLibrary() {
         <>
         <Container>
             <Header />
+            <div className={css.flex}> 
             <ReadComponent>
                 <MyFilter />
                 <MyRecommend buble={setShowSuccessModal}/>
             </ReadComponent>
             <MyLibraryBox />
+            </div>
                {showSuccessModal && <ModalAddGood  onClose={() => setShowSuccessModal(false)} />}
         </Container>
         </>

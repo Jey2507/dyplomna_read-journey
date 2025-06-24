@@ -63,7 +63,11 @@ export default function MyLibraryBox() {
               slidesPerView: 4, 
               spaceBetween: 25, 
             },
-              1440: { slidesPerView: 4 },
+              1440: {
+              width: 800,
+              slidesPerView: 5,
+              spaceBetween: 20,
+            },
             }}
             className={css.swiper}
           >

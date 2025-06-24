@@ -130,3 +130,17 @@
     }
 
 }
+
+@media screen and (min-width: 1440px) {
+    .divRead {
+        width: 100%;
+    }
+
+    .descr {
+        width: 100%;
+    }
+
+    .divCircle {
+        height: 38px;
+    }
+}

@@ -12,7 +12,6 @@ export default function Home() {
             <NavLink className={css.button} to="/register">Register</NavLink>
             <NavLink className={css.button} to="/login">Login</NavLink>
         </div>
-            
         </>
     )
 }
