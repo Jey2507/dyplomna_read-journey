@@ -94,6 +94,18 @@
   color: rgba(255, 255, 255, 0.69);
 }
 
+.loading {
+  text-align: center;
+  padding: 20px;
+  color: #666;
+}
+
+.noBooks {
+  text-align: center;
+  padding: 20px;
+  color: #666;
+}
+
 .arrowIcon {
   width: 20px;
   height: 20px;

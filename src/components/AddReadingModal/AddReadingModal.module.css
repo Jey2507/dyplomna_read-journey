@@ -47,7 +47,7 @@
 }
 
 
-.modal img {
+.imageAdd {
     border-radius: 8px;
     width: 140px;
     height: 213px;
@@ -123,6 +123,25 @@
   color: #ffffff; 
 }
 
+.newBook {
+    width: 111px;
+    height: 72px;
+}
+
+.noImagePlaceholder {
+    border-radius: 8px;
+    width: 153px;
+    height: 233px;
+    background: #262626;
+    margin-bottom: 16px;
+    border: 1px solid #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
 @media screen and (min-width: 768px) {
   .modal {
     width: 500px;
@@ -130,7 +149,7 @@
     padding: 50px;
   }
 
-  .modal img {
+  .imageAdd {
     width: 153px;
     height: 233px;
     margin-bottom: 16px;

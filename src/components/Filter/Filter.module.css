@@ -74,6 +74,25 @@
     color: #f9f9f9;
     margin-top: 12px;
     margin-bottom: 20px;
+    margin-right: 8px;
+}
+
+.clearButton {
+    background: none;
+    border-radius: 30px;
+    border: 1px solid rgba(249, 249, 249, 0.2);
+    border-radius: 30px;
+    padding: 10px 20px;
+    width: max-content;
+    height: 38px;
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.29;
+    letter-spacing: 0.02em;
+    color: #f9f9f9;
+    margin-top: 12px;
+    margin-bottom: 20px;
 }
 
 .errorText {
@@ -136,6 +155,17 @@
     }
 
     .submitButton {
+        padding: 12px 28px;
+        width: max-content;
+        height: 42px;
+        font-family: var(--font-family);
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 112%;
+        letter-spacing: 0.02em;
+        color: #f9f9f9;
+    }
+    .clearButton {
         padding: 12px 28px;
         width: max-content;
         height: 42px;

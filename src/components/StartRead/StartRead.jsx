@@ -1,9 +1,11 @@
 import { NavLink } from "react-router-dom"
 import css from "../StartRead/StartRead.module.css"
 import { ArrowRightIcon } from "@heroicons/react/24/outline"
+import bookNew from "../../assets/images/books.png";
 
 export default function StartRead() {
     return (
+        <>
         <div className={css.divRead}>  
             <h2>Start your workout</h2>
             <ul>
@@ -25,6 +27,12 @@ export default function StartRead() {
                 <h3>My library</h3>
                         <ArrowRightIcon className={css.arrow}/>
             </NavLink>
+            
         </div>
+        <div className={css.laptopDiv}>
+                <img src={bookNew} alt="books" />
+                <p>"Books are <span>windows</span> to the world, and reading is a journey into the unknown."</p>
+        </div>
+        </>
     )
 }

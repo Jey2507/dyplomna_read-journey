@@ -206,6 +206,24 @@
     height: 260px;
 }
 
+.newBook {
+    width: 111px;
+    height: 72px;
+}
+
+.noImagePlaceholder {
+    border-radius: 8px;
+    width: 137px;
+    height: 208px;
+    background: #262626;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 8px;
+    border: 1px solid #000;
+
+}
+
 @media screen and (min-width: 768px)  {
     .container {
         border-radius: 30px;

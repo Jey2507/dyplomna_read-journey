@@ -6,6 +6,7 @@ import MyReadingStart from "../../components/MyReadingStart/MyReadingStart.jsx";
 import css from "../MyReading/MyReading.module.css";
 import { getBookById, startReading, stopReading } from "../../redux/books/operations.js";
 import { useDispatch } from "react-redux";
+import bookNew from "../../assets/images/group.png";
 
 export default function MyReading() {
   const location = useLocation();
@@ -98,7 +99,13 @@ console.log(timeleft)
         <div className={css.readbox}>
           <h2 className={css.titleread}>My reading</h2>
           <div className={css.flex}>
-            <img className={css.imgread} src={book.image} alt={book.title} />
+            {book.imageUrl ? (
+              <img className={css.imgread} src={book.imageUrl} alt={book.title} />
+            ) : (
+              <div className={css.noImagePlaceholder}>
+                <img className={css.newBook} src={bookNew} alt="newBook" />
+              </div>
+            )}
             <h3 className={css.namebook}>{book.title}</h3>
             <p className={css.author}>{book.author}</p>
           </div>

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import css from "../MyLibraryBox/MyLibraryBox.module.css";
 import books from "../../assets/images/books.png";
+import bookNew from "../../assets/images/group.png";
 import { deleteMybook, myBooks } from "../../redux/books/operations";
 import { useDispatch, useSelector } from "react-redux";
 import { selectBooks } from "../../redux/books/selectors";
@@ -60,21 +61,27 @@ export default function MyLibraryBox() {
               640: { slidesPerView: 2 },
               1024: { slidesPerView: 3 },
               768: { 
-              slidesPerView: 4, 
-              spaceBetween: 25, 
-            },
+                slidesPerView: 4, 
+                spaceBetween: 25, 
+              },
               1440: {
-              width: 800,
-              slidesPerView: 5,
-              spaceBetween: 20,
-            },
+                width: 800,
+                slidesPerView: 5,
+                spaceBetween: 20,
+              },
             }}
             className={css.swiper}
           >
             {library.map((book) => (
               <SwiperSlide className={css.newList} key={book._id}>
                 <div className={css.item} onClick={() => setSelectedBook(book)}>
-                  <img className={css.imageMy} src={book.imageUrl} alt={book.title} />
+                  {book.imageUrl ? (
+                    <img className={css.imageMy} src={book.imageUrl} alt={book.title} />
+                  ) : (
+                    <div className={css.noImagePlaceholder}>
+                      <img className={css.newBook} src={bookNew} alt="newBook" />
+                    </div>
+                  )}
                   <h2 className={css.myTitle}>{book.title}</h2>
                   <h3 className={css.myAuthor}>{book.author}</h3>
                   <button

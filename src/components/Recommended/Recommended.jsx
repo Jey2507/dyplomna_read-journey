@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { recommend } from "../../redux/books/operations";
+import { selectFilteredBooks } from "../../redux/books/slice";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
@@ -13,6 +14,7 @@ export default function Recommended({ buble }) {
   const dispatch = useDispatch();
   const [recommendedBooks, setRecommendedBooks] = useState([]);
   const [selectedBook, setSelectedBook] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   const prevRef = useRef(null);
   const nextRef = useRef(null);
@@ -21,27 +23,23 @@ export default function Recommended({ buble }) {
   const [isFirstSlide, setIsFirstSlide] = useState(true);
   const [isLastSlide, setIsLastSlide] = useState(false);
 
+  const filteredBooks = useSelector(selectFilteredBooks);
+
   useEffect(() => {
     const fetchRecommendedBooks = async () => {
+      setIsLoading(true);
       try {
         const result = await dispatch(recommend()).unwrap();
-        console.log("Fetched books:", result.length); // Відлагодження кількості слайдів
         setRecommendedBooks(result);
       } catch (error) {
         console.error("Failed to fetch recommended books:", error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
     fetchRecommendedBooks();
   }, [dispatch]);
-
-  const handleCardClick = (book) => {
-    setSelectedBook(book);
-  };
-
-  const handleCloseModal = () => {
-    setSelectedBook(null);
-  };
 
   useEffect(() => {
     if (swiperRef.current) {
@@ -54,6 +52,26 @@ export default function Recommended({ buble }) {
     }
   }, [recommendedBooks]);
 
+  const displayedBooks = filteredBooks.length > 0
+    ? recommendedBooks.filter((book) => filteredBooks.some((fb) => fb._id === book._id))
+    : recommendedBooks;
+
+  const handleCardClick = (book) => {
+    setSelectedBook(book);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedBook(null);
+  };
+
+  if (isLoading) {
+    return <div className={css.loading}>Loading recommended books...</div>;
+  }
+
+  if (displayedBooks.length === 0) {
+    return <div className={css.noBooks}>No books match the filters.</div>;
+  }
+
   return (
     <div className={css.container}>
       <h2 className={css.title}>Recommended</h2>
@@ -64,8 +82,7 @@ export default function Recommended({ buble }) {
           slidesPerView={2}
           spaceBetween={21}
           width={280}
-          autoHeight={true} 
-          slidesPerColumnFill={'row'}
+          autoHeight={true}
           onBeforeInit={(swiper) => {
             swiperRef.current = swiper;
             swiper.params.navigation.prevEl = prevRef.current;
@@ -85,21 +102,21 @@ export default function Recommended({ buble }) {
           }}
           breakpoints={{
             640: { slidesPerView: 2 },
-            768: { 
-              slidesPerView: 4, 
-              slidesPerColumn: 2, 
-              spaceBetween: 25, 
-              width: 624
+            768: {
+              slidesPerView: 4,
+              slidesPerColumn: 2,
+              spaceBetween: 25,
+              width: 624,
             },
             1440: {
               width: 800,
               slidesPerView: 5,
               spaceBetween: 20,
-            }
+            },
           }}
           className={css.swiper}
         >
-          {recommendedBooks.map((book) => (
+          {displayedBooks.map((book) => (
             <SwiperSlide key={book._id}>
               <div
                 className={css.item}

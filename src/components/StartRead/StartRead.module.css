@@ -87,6 +87,9 @@
   height: 20px;
 }
 
+.laptopDiv {
+    display: none;
+}
 
 @media screen and (min-width: 768px) {
     .divRead {
@@ -143,4 +146,36 @@
     .divCircle {
         height: 38px;
     }
+
+    .laptopDiv {
+        display: flex;
+        background: #262626;
+        height: 83px;
+        width: 100%;
+        border-radius: 12px;
+        padding: 15px 20px;
+        display: flex;
+        gap: 14px;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .laptopDiv img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .laptopDiv p {
+        font-family: var(--font-family);
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 129%;
+        letter-spacing: -0.02em;
+        color: #686868;
+    }
+
+    .laptopDiv span {
+        color: #f9f9f9;
+    }
+    
 }

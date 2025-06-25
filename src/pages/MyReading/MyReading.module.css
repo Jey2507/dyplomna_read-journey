@@ -92,6 +92,24 @@
     right: 20px;
 }
 
+.newBook {
+    width: 174px;
+    height: 112px;
+}
+
+.noImagePlaceholder {
+    border-radius: 8px;
+    width: 224px;
+    height: 340px;
+    background: #262626;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 25px;
+    border: 1px solid #000;
+
+}
+
 @media screen and (min-width: 768px) {
     .readbox {
         width: 704px;

@@ -13,30 +13,28 @@ import storage from "redux-persist/lib/storage";
 
 import { authReducer } from "./auth/slice.js";
 import { booksReducer } from "./books/slice.js";
+import { filtersReducer } from "./filters/slice.js";
 import { setupAxiosInterceptors } from "./auth/operation.js";
 
-// Persist config for auth
 const authConfig = {
-  key: 'auth',
+  key: "auth",
   storage,
-  whitelist: ['token', 'refreshToken'],
+  whitelist: ["token", "refreshToken"],
 };
 
-// Persist config for books (optional)
-const booksConfig = {
-  key: 'books',
+const filtersConfig = {
+  key: "filters",
   storage,
-  // whitelist: ['someBookField'] // якщо треба зберігати певні поля
 };
 
-// Persist reducers
 const persistedAuthReducer = persistReducer(authConfig, authReducer);
-const persistedBooksReducer = persistReducer(booksConfig, booksReducer);
+const persistedFiltersReducer = persistReducer(filtersConfig, filtersReducer);
 
 export const store = configureStore({
   reducer: {
     auth: persistedAuthReducer,
-    books: persistedBooksReducer, // або просто books: booksReducer, якщо не потрібно зберігати
+    books: booksReducer,
+    filters: persistedFiltersReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

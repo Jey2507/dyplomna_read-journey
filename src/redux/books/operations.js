@@ -167,3 +167,29 @@ export const getBookById = createAsyncThunk(
     }
   }
 );
+
+export const addNewBook = createAsyncThunk(
+  "books/addNew",
+  async (bookData, thunkAPI) => {
+    try {
+      const state = thunkAPI.getState();
+      const token = state.auth.token;
+
+      if (!token) {
+        return thunkAPI.rejectWithValue("No auth token found");
+      }
+
+      const response = await axios.post("/books/add", bookData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      toast.success("Book added successfully");
+      return response.data;
+    } catch (error) {
+      toast.error("Failed to add book");
+      return thunkAPI.rejectWithValue(error.response?.data || error.message);
+    }
+  }
+);

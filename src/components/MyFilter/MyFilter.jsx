@@ -1,14 +1,33 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addNewBook } from '../../redux/books/operations.js'; // Імпорт функції
 import css from '../MyFilter/MyFilter.module.css';
 
-export default function MyFilter({ onFilter }) {
+export default function MyFilter() {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
   const [pages, setPages] = useState(''); 
+  const dispatch = useDispatch();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    onFilter({ title, author, pages }); 
+    const bookData = {
+      title,
+      author,
+      totalPages: Number(pages) || undefined, 
+    };
+
+    try {
+      await dispatch(addNewBook(bookData)).unwrap();
+      setTitle('');
+      setAuthor('');
+      setPages('');
+      // onFilter(bookData); 
+      // console.success("Success to add book");
+    } catch (error) {
+      console.error('Failed to add book:', error);
+     
+    }
   };
 
   return (
