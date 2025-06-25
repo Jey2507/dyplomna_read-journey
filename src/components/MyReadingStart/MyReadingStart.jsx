@@ -128,9 +128,7 @@ export default function MyReadingStart({
                   fontSize="18px"
                   fill="#f9f9f9"
                 >
-                  {progress.pagesRead >= progress.totalPages
-                    ? "100.00%"
-                    : ((progress.pagesRead / progress.totalPages) * 100).toFixed(2) + "%"}
+                  100%
                 </text>
               </svg>
             </div>

@@ -129,9 +129,11 @@
     font-size: 14px;
     cursor: default;
     margin-bottom: 7px;
+    cursor: pointer;
 }
 
 .dropdownItemActive {
+    cursor: pointer;
     color: #f9f9f9;
     font-family: var(--font-family);
     font-size: 14px;
@@ -295,5 +297,14 @@
     flex-shrink: 0;
     flex-basis: 65.4%;
     margin-bottom: 0;
+  }
+
+  .dropdownItemDisabled {
+    font-size: 14px;
+  }
+
+  .dropdownButton {
+    font-size: 14px;
+    height: max-content;
   }
 }

@@ -9,6 +9,7 @@ import "swiper/css/navigation";
 import css from "./Recommended.module.css";
 import AddBookModal from "../AddBookModal/AddBookModal";
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
+import Loader from "../Loader/Loader.jsx";
 
 export default function Recommended({ buble }) {
   const dispatch = useDispatch();
@@ -64,14 +65,6 @@ export default function Recommended({ buble }) {
     setSelectedBook(null);
   };
 
-  if (isLoading) {
-    return <div className={css.loading}>Loading recommended books...</div>;
-  }
-
-  if (displayedBooks.length === 0) {
-    return <div className={css.noBooks}>No books match the filters.</div>;
-  }
-
   return (
     <div className={css.container}>
       <h2 className={css.title}>Recommended</h2>
@@ -116,20 +109,28 @@ export default function Recommended({ buble }) {
           }}
           className={css.swiper}
         >
-          {displayedBooks.map((book) => (
-            <SwiperSlide key={book._id}>
-              <div
-                className={css.item}
-                onClick={() => handleCardClick(book)}
-                role="button"
-                tabIndex={0}
-              >
-                <img className={css.image} src={book.imageUrl} alt={book.title} />
-                <h3 className={css.titleBook}>{book.title}</h3>
-                <p className={css.descr}>{book.author}</p>
-              </div>
+          {isLoading ? (
+            <Loader />
+          ) : displayedBooks.length === 0 ? (
+            <SwiperSlide>
+              <div className={css.noBooks}>No books match the filters.</div>
             </SwiperSlide>
-          ))}
+          ) : (
+            displayedBooks.map((book) => (
+              <SwiperSlide key={book._id}>
+                <div
+                  className={css.item}
+                  onClick={() => handleCardClick(book)}
+                  role="button"
+                  tabIndex={0}
+                >
+                  <img className={css.image} src={book.imageUrl} alt={book.title} />
+                  <h3 className={css.titleBook}>{book.title}</h3>
+                  <p className={css.descr}>{book.author}</p>
+                </div>
+              </SwiperSlide>
+            ))
+          )}
         </Swiper>
 
         <div className={css.buttons}>

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setTitleFilter, setAuthorFilter, clearFilters } from '../../redux/filters/slice.js';
-import { Toaster, toast } from 'react-hot-toast';
+import { toast } from 'react-hot-toast';
 import css from '../Filter/Filter.module.css';
 import { selectRecommendedBooks } from '../../redux/books/selectors.js';
 
@@ -82,7 +82,6 @@ export default function Filter() {
           Clear filters
         </button>
       </form>
-      <Toaster /> 
     </div>
   );
 }

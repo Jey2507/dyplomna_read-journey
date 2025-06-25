@@ -25,7 +25,7 @@ export default function ReadJourney() {
                     
                 <Recommended buble={setShowSuccessModal} />
             </div>
-            <Toaster position="top-right"/>
+            <Toaster position="top-center"/>
             {showSuccessModal && <ModalAddGood  onClose={() => setShowSuccessModal(false)} />}
         </Container>
         </>

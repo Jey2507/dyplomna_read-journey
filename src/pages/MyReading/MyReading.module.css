@@ -93,19 +93,19 @@
 }
 
 .newBook {
-    width: 174px;
-    height: 112px;
+    width: 111px;
+    height: 72px;
 }
 
 .noImagePlaceholder {
     border-radius: 8px;
-    width: 224px;
-    height: 340px;
-    background: #262626;
+    width: 137px;
+    height: 208px;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 25px;
+    background: #262626;
     border: 1px solid #000;
 
 }
@@ -151,6 +151,7 @@
         height: 256px;
         margin-bottom: 25px;
     }
+
 
     .flex {
         margin-bottom: 16px;
@@ -198,6 +199,16 @@
     }
 
     .imgread {
+        width: 224px;
+        height: 340px;
+    }
+
+    .newBook {
+        width: 174px;
+        height: 112px;
+    }
+
+    .noImagePlaceholder {
         width: 224px;
         height: 340px;
     }

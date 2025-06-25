@@ -99,8 +99,8 @@ console.log(timeleft)
         <div className={css.readbox}>
           <h2 className={css.titleread}>My reading</h2>
           <div className={css.flex}>
-            {book.imageUrl ? (
-              <img className={css.imgread} src={book.imageUrl} alt={book.title} />
+            {book.image? (
+              <img className={css.imgread} src={book.image} alt={book.title} />
             ) : (
               <div className={css.noImagePlaceholder}>
                 <img className={css.newBook} src={bookNew} alt="newBook" />
