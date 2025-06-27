@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addNewBook } from '../../redux/books/operations.js'; // Імпорт функції
+import { addNewBook } from '../../redux/books/operations.js'; 
 import css from '../MyFilter/MyFilter.module.css';
 
 export default function MyFilter() {

@@ -18,7 +18,7 @@ export default function MyLibraryBox() {
   const library = useSelector(selectBooks);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedBook, setSelectedBook] = useState(null);
-  const [filter, setFilter] = useState("all"); // Стан для фільтра
+  const [filter, setFilter] = useState("all"); 
   const dropdownRef = useRef(null);
 
   const toggleDropdown = () => setIsOpen((prev) => !prev);
@@ -144,7 +144,7 @@ export default function MyLibraryBox() {
             Unread
           </li>
           <li
-            className={`${css.dropdownItemDisabled} ${filter === "in-progress" ? css.dropdownItemActive : ""}`} // Оновлено "inProgress" на "in-progress"
+            className={`${css.dropdownItemDisabled} ${filter === "in-progress" ? css.dropdownItemActive : ""}`} 
             onClick={() => {
               setFilter("in-progress");
               setIsOpen(false);

@@ -7,7 +7,7 @@ import css from './RegisterForm.module.css';
 import { useDispatch } from 'react-redux';
 import { register as registerUser } from '../../redux/auth/operation.js';
 import toast from 'react-hot-toast';
-import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'; // Іконки для "ока"
+import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'; 
 
 const schema = yup.object().shape({
   name: yup.string().min(2, 'Name must be at least 2 characters').required('Name is required'),
@@ -85,7 +85,7 @@ export default function RegisterForm() {
               placeholder="Enter your password"
               {...register('password')}
               className={`${css.input} ${errors.password ? css.errorInput : ''}`}
-              autoComplete="new-password" /* Допомагає уникнути автозаповнення */
+              autoComplete="new-password" 
             />
             <button
               type="button"

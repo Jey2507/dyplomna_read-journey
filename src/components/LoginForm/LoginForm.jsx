@@ -7,7 +7,7 @@ import css from './LoginForm.module.css';
 import { useDispatch } from 'react-redux';
 import { login as loginUser } from '../../redux/auth/operation.js';
 import toast from 'react-hot-toast';
-import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'; // Іконки для "ока"
+import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'; 
 
 const schema = yup.object().shape({
   email: yup.string().email('Invalid email address').required('Email is required'),

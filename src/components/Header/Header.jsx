@@ -5,7 +5,7 @@ import { selectUser } from "../../redux/auth/selectors";
 import { NavLink } from "react-router-dom";
 import { logout } from "../../redux/auth/operation";
 import toast from "react-hot-toast";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline"; // Тонші іконки
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline"; 
 
 export default function Header() {
   const dispatch = useDispatch();
